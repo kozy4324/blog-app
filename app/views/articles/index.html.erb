@@ -1,2 +1,9 @@
 <h1>Articles#index</h1>
-<%= debug @articles %>
+
+<div id="articles">
+  <% @articles.each do |article| %>
+    <div>
+      <%= article.title %>:<%= article.body %>
+    </div>
+  <% end %>
+</div>
