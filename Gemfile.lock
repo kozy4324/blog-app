@@ -53,6 +53,9 @@ GEM
       activemodel (= 8.0.3)
       activesupport (= 8.0.3)
       timeout (>= 0.4.0)
+    activerecord-interval_reconnect (0.2.0)
+      activerecord (>= 7.2.0, < 8.1)
+      activesupport (>= 7.2.0, < 8.1)
     activestorage (8.0.3)
       actionpack (= 8.0.3)
       activejob (= 8.0.3)
@@ -378,6 +381,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  activerecord-interval_reconnect (~> 0.2.0)
   bootsnap
   brakeman
   capybara

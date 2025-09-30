@@ -64,3 +64,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "activerecord-interval_reconnect", "~> 0.2.0"
