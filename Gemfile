@@ -66,3 +66,5 @@ group :test do
 end
 
 gem "activerecord-interval_reconnect", "~> 0.2.0"
+
+gem "reactionview", "~> 0.1.2"
