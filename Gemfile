@@ -68,3 +68,5 @@ end
 gem "activerecord-interval_reconnect", "~> 0.2.0"
 
 gem "reactionview", "~> 0.1.2"
+
+gem "tailwindcss-rails", "~> 4.3"
