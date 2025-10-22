@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 8.1.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record
@@ -65,8 +65,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "activerecord-interval_reconnect", "~> 0.2.0"
 
 gem "reactionview", "~> 0.1.2"
 
 gem "tailwindcss-rails", "~> 4.3"
+
+gem "activerecord-interval_reconnect", "~> 0.3.0"
