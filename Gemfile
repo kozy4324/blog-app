@@ -66,7 +66,7 @@ group :test do
 end
 
 
-gem "reactionview", "~> 0.1.2"
+gem "reactionview", "~> 0.1.6"
 
 gem "tailwindcss-rails", "~> 4.3"
 

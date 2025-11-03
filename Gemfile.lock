@@ -262,7 +262,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    reactionview (0.1.5)
+    reactionview (0.1.6)
       actionview (>= 7.0)
       herb (>= 0.7.5, < 1.0.0)
     regexp_parser (2.11.3)
@@ -413,7 +413,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.0)
-  reactionview (~> 0.1.2)
+  reactionview (~> 0.1.6)
   rubocop-minitest
   rubocop-rails-omakase
   ruby-lsp-brakeman
