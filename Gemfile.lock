@@ -266,7 +266,7 @@ GEM
       actionview (>= 7.0)
       herb (>= 0.7.5, < 1.0.0)
     regexp_parser (2.11.3)
-    reline (0.6.2)
+    reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
     rubocop (1.81.7)
