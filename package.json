@@ -1,0 +1,27 @@
+{
+  "name": "blog-app",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kozy4324/blog-app.git"
+  },
+  "author": "kozy4324@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kozy4324/blog-app/issues"
+  },
+  "homepage": "https://github.com/kozy4324/blog-app#readme",
+  "devDependencies": {
+    "@herb-tools/linter": "^0.8.7",
+    "html-content-model-conformance": "git+https://github.com/kozy4324/herb-linter-custom-rule-html-content-model-conformance.git"
+  }
+}
