@@ -1,9 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  body: MyText
+  title: My First Article
+  body: This is a test blog article. Sample content is written here.
 
 two:
-  title: MyString
-  body: MyText
+  title: My Second Article
+  body: |
+    This is a multi-line article content.
+    It spans across several lines to demonstrate
+    how to handle longer text content in YAML fixtures.
+    
+    This can include paragraphs with proper formatting
+    and line breaks as needed for testing purposes.
