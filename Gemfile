@@ -57,6 +57,7 @@ group :development do
   gem "web-console"
 
   gem "ruby-lsp-brakeman"
+  gem "steep"
 end
 
 group :test do

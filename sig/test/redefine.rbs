@@ -1,0 +1,3 @@
+class ArticlesControllerTest < ActionDispatch::IntegrationTest
+  def self.test: (untyped name) { () [self: instance] -> untyped } -> untyped
+end
