@@ -58,6 +58,7 @@ group :development do
 
   gem "ruby-lsp-brakeman"
   gem "steep"
+  gem "rbs_rails", require: false
 end
 
 group :test do

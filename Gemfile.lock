@@ -277,6 +277,9 @@ GEM
       ffi (~> 1.0)
     rbs (3.10.2)
       logger
+    rbs_rails (0.12.1)
+      parser
+      rbs (>= 1)
     rdoc (7.0.3)
       erb
       psych (>= 4.0.0)
@@ -452,6 +455,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.0)
+  rbs_rails
   reactionview (~> 0.2.0)
   rubocop-minitest
   rubocop-rails-omakase
