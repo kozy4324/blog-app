@@ -1,14 +1,16 @@
-class Article < ::ApplicationRecord
-  extend ::_ActiveRecord_Relation_ClassMethods[::Article, ::Article::ActiveRecord_Relation, ::Integer]
+# resolve-type-names: false
 
-  module GeneratedAttributeMethods
+class ::Article < ::ApplicationRecord
+  extend ::ActiveRecord::Base::ClassMethods[::Article, ::Article::ActiveRecord_Relation, ::Integer]
+
+  module ::Article::GeneratedAttributeMethods
     def id: () -> ::Integer
 
     def id=: (::Integer) -> ::Integer
 
     def id?: () -> bool
 
-    def id_changed?: () -> bool
+    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def id_change: () -> [ ::Integer?, ::Integer? ]
 
@@ -16,7 +18,7 @@ class Article < ::ApplicationRecord
 
     def id_was: () -> ::Integer?
 
-    def id_previously_changed?: () -> bool
+    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def id_previous_change: () -> ::Array[::Integer?]?
 
@@ -38,13 +40,17 @@ class Article < ::ApplicationRecord
 
     def clear_id_change: () -> void
 
+    def id_before_type_cast: () -> ::Integer
+
+    def id_for_database: () -> ::Integer
+
     def title: () -> ::String?
 
     def title=: (::String?) -> ::String?
 
     def title?: () -> bool
 
-    def title_changed?: () -> bool
+    def title_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def title_change: () -> [ ::String?, ::String? ]
 
@@ -52,7 +58,7 @@ class Article < ::ApplicationRecord
 
     def title_was: () -> ::String?
 
-    def title_previously_changed?: () -> bool
+    def title_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def title_previous_change: () -> ::Array[::String?]?
 
@@ -74,13 +80,17 @@ class Article < ::ApplicationRecord
 
     def clear_title_change: () -> void
 
+    def title_before_type_cast: () -> ::String?
+
+    def title_for_database: () -> ::String?
+
     def body: () -> ::String?
 
     def body=: (::String?) -> ::String?
 
     def body?: () -> bool
 
-    def body_changed?: () -> bool
+    def body_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def body_change: () -> [ ::String?, ::String? ]
 
@@ -88,7 +98,7 @@ class Article < ::ApplicationRecord
 
     def body_was: () -> ::String?
 
-    def body_previously_changed?: () -> bool
+    def body_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def body_previous_change: () -> ::Array[::String?]?
 
@@ -110,13 +120,17 @@ class Article < ::ApplicationRecord
 
     def clear_body_change: () -> void
 
+    def body_before_type_cast: () -> ::String?
+
+    def body_for_database: () -> ::String?
+
     def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
     def created_at?: () -> bool
 
-    def created_at_changed?: () -> bool
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
 
@@ -124,7 +138,7 @@ class Article < ::ApplicationRecord
 
     def created_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at_previously_changed?: () -> bool
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -146,13 +160,17 @@ class Article < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
     def updated_at: () -> ::ActiveSupport::TimeWithZone
 
     def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
     def updated_at?: () -> bool
 
-    def updated_at_changed?: () -> bool
+    def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def updated_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
 
@@ -160,7 +178,7 @@ class Article < ::ApplicationRecord
 
     def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at_previously_changed?: () -> bool
+    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -181,24 +199,90 @@ class Article < ::ApplicationRecord
     def restore_updated_at!: () -> void
 
     def clear_updated_at_change: () -> void
-  end
-  include GeneratedAttributeMethods
 
-  module GeneratedAssociationMethods
-  end
-  include GeneratedAssociationMethods
+    def updated_at_before_type_cast: () -> ::Time
 
-  module GeneratedRelationMethods
+    def updated_at_for_database: () -> ::Time
+  end
+  include ::Article::GeneratedAttributeMethods
+  module ::Article::GeneratedAliasAttributeMethods
+    include ::Article::GeneratedAttributeMethods
+
+    alias id_value id
+
+    alias id_value= id=
+
+    alias id_value? id?
+
+    alias id_value_changed? id_changed?
+
+    alias id_value_change id_change
+
+    alias id_value_will_change! id_will_change!
+
+    alias id_value_was id_was
+
+    alias id_value_previously_changed? id_previously_changed?
+
+    alias id_value_previous_change id_previous_change
+
+    alias id_value_previously_was id_previously_was
+
+    alias id_value_before_last_save id_before_last_save
+
+    alias id_value_change_to_be_saved id_change_to_be_saved
+
+    alias id_value_in_database id_in_database
+
+    alias saved_change_to_id_value saved_change_to_id
+
+    alias saved_change_to_id_value? saved_change_to_id?
+
+    alias will_save_change_to_id_value? will_save_change_to_id?
+
+    alias restore_id_value! restore_id!
+
+    alias clear_id_value_change clear_id_change
+
+    alias id_value_before_type_cast id_before_type_cast
+
+    alias id_value_for_database id_for_database
+  end
+  include ::Article::GeneratedAliasAttributeMethods
+
+  module ::Article::GeneratedAssociationMethods
+  end
+  include ::Article::GeneratedAssociationMethods
+
+  module ::Article::GeneratedRelationMethods
   end
 
-  class ActiveRecord_Relation < ::ActiveRecord::Relation
-    include ::Article::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Article, ::Integer]
+  class ::Article::ActiveRecord_Relation < ::ActiveRecord::Relation
     include ::Enumerable[::Article]
+    include ::Article::GeneratedRelationMethods
+    include ::ActiveRecord::Relation::Methods[::Article, ::Integer]
   end
 
-  class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+  class ::Article::ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+    include ::Enumerable[::Article]
     include ::Article::GeneratedRelationMethods
-    include ::_ActiveRecord_Relation[::Article, ::Integer]
+    include ::ActiveRecord::Relation::Methods[::Article, ::Integer]
+
+    def build: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Article
+             | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Article]
+    def create: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Article
+              | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Article]
+    def create!: (?::ActiveRecord::Associations::CollectionProxy::_EachPair attributes) ?{ () -> untyped } -> ::Article
+               | (::Array[::ActiveRecord::Associations::CollectionProxy::_EachPair] attributes) ?{ () -> untyped } -> ::Array[::Article]
+    def reload: () -> ::Array[::Article]
+
+    def replace: (::Array[::Article]) -> void
+    def delete: (*::Article | ::Integer) -> ::Array[::Article]
+    def destroy: (*::Article | ::Integer) -> ::Array[::Article]
+    def <<: (*::Article | ::Array[::Article]) -> self
+    def prepend: (*::Article | ::Array[::Article]) -> self
   end
+end
+
+class ::ApplicationRecord < ::ActiveRecord::Base
 end

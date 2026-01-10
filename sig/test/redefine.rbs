@@ -1,3 +1,4 @@
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
+  include ::_RbsRailsPathHelpers
   def self.test: (untyped name) { () [self: instance] -> untyped } -> untyped
 end
