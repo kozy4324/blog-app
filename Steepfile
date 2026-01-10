@@ -27,9 +27,4 @@ target :test do
   check "test"                      # Type check Ruby scripts under `test`
 
   configure_code_diagnostics(D::Ruby.lenient)      # Weak type checking for test code
-
-  library "activerecord"
-  library "activesupport"
-  library "actionpack"
-  library "minitest"
 end

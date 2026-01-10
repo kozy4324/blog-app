@@ -6,10 +6,3 @@ sources:
     repo_dir: gems
 
 path: .gem_rbs_collection
-
-gems:
-  - name: rails
-  - name: activerecord
-  - name: activesupport
-  - name: actionpack
-  - name: minitest
