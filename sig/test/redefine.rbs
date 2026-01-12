@@ -1,4 +1,7 @@
-class ArticlesControllerTest < ActionDispatch::IntegrationTest
-  include ::_RbsRailsPathHelpers
+class ActiveSupport::TestCase
   def self.test: (untyped name) { () [self: instance] -> untyped } -> untyped
+end
+
+class ActionDispatch::IntegrationTest
+  include ::_RbsRailsPathHelpers
 end
