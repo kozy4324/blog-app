@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/pocke/rbs_rails.git
-  revision: f1a7764617f57aac96e73d81fba1fedf5929bf0d
+  revision: c14e3f9832a119c4ee128e353513c635e2399fb2
   branch: master
   specs:
     rbs_rails (0.12.1)
       parser
+      prism
       rbs (>= 1)
 
 GEM
@@ -94,7 +95,7 @@ GEM
     bcrypt_pbkdf (1.1.2)
     bigdecimal (4.0.1)
     bindex (0.8.1)
-    bootsnap (1.20.1)
+    bootsnap (1.21.0)
       msgpack (~> 1.2)
     brakeman (7.1.2)
       racc
@@ -286,7 +287,7 @@ GEM
       ffi (~> 1.0)
     rbs (3.10.2)
       logger
-    rdoc (7.0.3)
+    rdoc (7.1.0)
       erb
       psych (>= 4.0.0)
       tsort
