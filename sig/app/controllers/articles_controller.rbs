@@ -1,0 +1,21 @@
+class ArticlesController < ApplicationController
+  @articles: untyped
+
+  @article: untyped
+
+  def index: () -> untyped
+
+  def show: () -> untyped
+
+  def new: () -> untyped
+
+  def create: () -> untyped
+
+  def edit: () -> untyped
+
+  def update: () -> untyped
+
+  private
+
+  def article_params: () -> untyped
+end
