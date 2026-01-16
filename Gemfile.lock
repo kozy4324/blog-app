@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/pocke/rbs_rails.git
-  revision: c14e3f9832a119c4ee128e353513c635e2399fb2
+  revision: 541387e17b4795b5a6e196ed65aa65f00597d1a0
   branch: master
   specs:
-    rbs_rails (0.12.1)
+    rbs_rails (0.13.0)
       parser
       prism
       rbs (>= 1)
