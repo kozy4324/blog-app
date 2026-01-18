@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/pocke/rbs_rails.git
-  revision: c14e3f9832a119c4ee128e353513c635e2399fb2
+  revision: 541387e17b4795b5a6e196ed65aa65f00597d1a0
   branch: master
   specs:
-    rbs_rails (0.12.1)
+    rbs_rails (0.13.0)
       parser
       prism
       rbs (>= 1)
@@ -172,7 +172,8 @@ GEM
       zeitwerk (>= 2.6.18, < 3.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
-    listen (3.9.0)
+    listen (3.10.0)
+      logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
@@ -355,7 +356,7 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    solid_queue (1.3.0)
+    solid_queue (1.3.1)
       activejob (>= 7.1)
       activerecord (>= 7.1)
       concurrent-ruby (>= 1.3.1)
@@ -415,7 +416,7 @@ GEM
     thruster (0.1.17-x86_64-linux)
     timeout (0.6.0)
     tsort (0.2.0)
-    turbo-rails (2.0.20)
+    turbo-rails (2.0.21)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
