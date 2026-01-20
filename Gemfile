@@ -59,6 +59,7 @@ group :development do
   gem "ruby-lsp-brakeman"
   gem "steep"
   gem "rbs_rails", require: false, github: "pocke/rbs_rails", branch: :master
+  gem "rails-mcp-server"
 end
 
 group :test do
