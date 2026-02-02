@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  allow_unauthenticated_access only: %i[index show]
+
   def index
     @articles = Article.all
   end
