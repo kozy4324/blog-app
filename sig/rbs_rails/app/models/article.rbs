@@ -203,6 +203,46 @@ class ::Article < ::ApplicationRecord
     def updated_at_before_type_cast: () -> ::Time
 
     def updated_at_for_database: () -> ::Time
+
+    def user_id: () -> ::Integer?
+
+    def user_id=: (::Integer?) -> ::Integer?
+
+    def user_id?: () -> bool
+
+    def user_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def user_id_change: () -> [ ::Integer?, ::Integer? ]
+
+    def user_id_will_change!: () -> void
+
+    def user_id_was: () -> ::Integer?
+
+    def user_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+
+    def user_id_previous_change: () -> ::Array[::Integer?]?
+
+    def user_id_previously_was: () -> ::Integer?
+
+    def user_id_before_last_save: () -> ::Integer?
+
+    def user_id_change_to_be_saved: () -> ::Array[::Integer?]?
+
+    def user_id_in_database: () -> ::Integer?
+
+    def saved_change_to_user_id: () -> ::Array[::Integer?]?
+
+    def saved_change_to_user_id?: () -> bool
+
+    def will_save_change_to_user_id?: () -> bool
+
+    def restore_user_id!: () -> void
+
+    def clear_user_id_change: () -> void
+
+    def user_id_before_type_cast: () -> ::Integer?
+
+    def user_id_for_database: () -> ::Integer?
   end
   include ::Article::GeneratedAttributeMethods
   module ::Article::GeneratedAliasAttributeMethods

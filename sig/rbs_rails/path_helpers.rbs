@@ -6,6 +6,13 @@ interface ::_RbsRailsPathHelpers
   def rails_info_routes_path: (*untyped) -> ::String
   def rails_info_notes_path: (*untyped) -> ::String
   def rails_info_path: (*untyped) -> ::String
+  def new_session_path: (*untyped) -> ::String
+  def edit_session_path: (*untyped) -> ::String
+  def session_path: (*untyped) -> ::String
+  def passwords_path: (*untyped) -> ::String
+  def new_password_path: (*untyped) -> ::String
+  def edit_password_path: (*untyped) -> ::String
+  def password_path: (*untyped) -> ::String
   def articles_path: (*untyped) -> ::String
   def new_article_path: (*untyped) -> ::String
   def edit_article_path: (*untyped) -> ::String
@@ -44,6 +51,13 @@ interface ::_RbsRailsPathHelpers
   def rails_info_routes_url: (*untyped) -> ::String
   def rails_info_notes_url: (*untyped) -> ::String
   def rails_info_url: (*untyped) -> ::String
+  def new_session_url: (*untyped) -> ::String
+  def edit_session_url: (*untyped) -> ::String
+  def session_url: (*untyped) -> ::String
+  def passwords_url: (*untyped) -> ::String
+  def new_password_url: (*untyped) -> ::String
+  def edit_password_url: (*untyped) -> ::String
+  def password_url: (*untyped) -> ::String
   def articles_url: (*untyped) -> ::String
   def new_article_url: (*untyped) -> ::String
   def edit_article_url: (*untyped) -> ::String

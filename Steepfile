@@ -8,9 +8,9 @@ target :lib do
 end
 
 target :test do
-  unreferenced!                     # Skip type checking the `lib` code when types in `test` target is changed
-  signature "sig"                   # Put RBS files for tests under `sig/test`
-  check "test"                      # Type check Ruby scripts under `test`
+  unreferenced!
+  signature "sig"
+  check "test"
 
-  configure_code_diagnostics(D::Ruby.lenient)      # Weak type checking for test code
+  configure_code_diagnostics(D::Ruby.lenient)
 end
