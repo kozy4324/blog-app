@@ -235,7 +235,7 @@ GEM
       prism (~> 1.5)
     msgpack (1.8.0)
     mutex_m (0.3.0)
-    net-imap (0.6.2)
+    net-imap (0.6.3)
       date
       net-protocol
     net-pop (0.1.2)
@@ -342,7 +342,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    reactionview (0.2.0)
+    reactionview (0.2.1)
       actionview (>= 7.0)
       herb (>= 0.8.0, < 1.0.0)
     regexp_parser (2.11.3)
