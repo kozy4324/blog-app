@@ -1,0 +1,81 @@
+Article Model Class Diagram
+===========================
+
+┌─────────────────────────────────────────────────────────────┐
+│                         Article                              │
+├─────────────────────────────────────────────────────────────┤
+│ Attributes:                                                  │
+│   id, title, body, user_id, created_at, updated_at          │
+├─────────────────────────────────────────────────────────────┤
+│ + GeneratedAssociationMethods                                │
+│ + GeneratedAttributeMethods                                  │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ extends
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    ApplicationRecord                         │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ extends
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    ActiveRecord::Base                        │
+├─────────────────────────────────────────────────────────────┤
+│ 主要な include モジュール:                                    │
+│                                                              │
+│ [永続化・CRUD]                                               │
+│   ├─ Persistence      (save, destroy, update, reload...)    │
+│   ├─ Callbacks        (before_save, after_create...)        │
+│   └─ Transactions     (transaction, with_lock...)           │
+│                                                              │
+│ [バリデーション]                                              │
+│   ├─ Validations      (valid?, validate!, errors)           │
+│   └─ ActiveModel::Validations                                │
+│                                                              │
+│ [属性・アクセス]                                              │
+│   ├─ AttributeMethods ([], []=, attributes, has_attribute?) │
+│   │   ├─ Read/Write   (read_attribute, write_attribute)     │
+│   │   ├─ Dirty        (changed?, saved_changes?)            │
+│   │   └─ PrimaryKey   (id, id=, to_key)                     │
+│   └─ Attributes                                              │
+│                                                              │
+│ [関連付け]                                                    │
+│   ├─ Associations     (association, belongs_to, has_many)   │
+│   ├─ AutosaveAssociation                                     │
+│   └─ NestedAttributes                                        │
+│                                                              │
+│ [クエリ・スコープ]                                            │
+│   ├─ Scoping          (default_scope, scope)                │
+│   └─ Inheritance      (STI support)                          │
+│                                                              │
+│ [ロック]                                                      │
+│   ├─ Locking::Optimistic  (楽観的ロック)                     │
+│   └─ Locking::Pessimistic (lock!, with_lock)                │
+│                                                              │
+│ [その他]                                                      │
+│   ├─ Turbo::Broadcastable (broadcast_append, refresh...)   │
+│   ├─ ActiveStorage::Attached::Model (attachment_changes)    │
+│   ├─ GlobalID::Identification (to_gid, to_sgid)             │
+│   ├─ Integration      (cache_key, to_param)                 │
+│   └─ Serialization    (to_json, as_json)                    │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ extends
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                         Object                               │
+│  (ActiveSupport拡張: blank?, present?, try, in?, etc.)      │
+└─────────────────────────────────────────────────────────────┘
+
+
+主要なメソッドの由来まとめ
+==========================
+
+| 機能                       | モジュール                    |
+|----------------------------|------------------------------|
+| save, destroy, update      | Persistence                  |
+| valid?, errors             | Validations                  |
+| title, body, user_id       | GeneratedAttributeMethods    |
+| changed?, saved_changes?   | AttributeMethods::Dirty      |
+| before_save, after_create  | Callbacks                    |
+| transaction, with_lock     | Transactions                 |
+| broadcast_append           | Turbo::Broadcastable         |
+| to_gid, to_sgid            | GlobalID::Identification     |
