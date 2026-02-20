@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pocke/rbs_rails.git
-  revision: dc90bce718387eb6e0f519dc045de01a850436e7
+  revision: c63671e36b744425713f8a0b279e04adb50dd6a4
   branch: master
   specs:
     rbs_rails (0.13.0)
