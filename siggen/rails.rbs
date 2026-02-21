@@ -1,0 +1,13 @@
+module ActiveRecord
+  class Schema
+    %a{siggen:def []: () -> void}
+    def self.[]: (untyped version) -> Migration::Current
+  end
+
+  class Migration
+    class Current
+      %a{siggen:def define: () -> void}
+      def define: (version: untyped) { () -> void } -> void
+    end
+  end
+end
