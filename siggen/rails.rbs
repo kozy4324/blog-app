@@ -1,13 +1,29 @@
 module ActiveRecord
   class Schema
-    %a{siggen:def []: () -> void}
     def self.[]: (untyped version) -> Migration::Current
   end
 
   class Migration
     class Current
-      %a{siggen:def define: () -> void}
-      def define: (version: untyped) { () -> void } -> void
+      def define: (version: untyped) { () [self: instance] -> void } -> void
+      def create_table: (untyped table_name, **untyped options) { (ConnectionAdapters::ColumnMethods t) -> void } -> void
+    end
+  end
+
+  module ConnectionAdapters
+    module ColumnMethods
+      %a{siggen:
+        class <%= create_table.table_name.classify %>
+          # <%= binding.local_variables %>
+          # <%= define %>
+          def <%= :names %>: () -> void
+        end
+      }
+      def text: (*Array[untyped] names, **untyped options) -> void
+    end
+
+    class TableDefinition
+      include ColumnMethods
     end
   end
 end

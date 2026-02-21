@@ -60,6 +60,7 @@ group :development do
   gem "steep"
   gem "rbs_rails", require: false, github: "pocke/rbs_rails", branch: :master
   gem "rails-mcp-server"
+  gem "objenealogist"
 end
 
 group :test do
