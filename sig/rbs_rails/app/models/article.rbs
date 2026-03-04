@@ -84,7 +84,7 @@ class ::Article < ::ApplicationRecord
 
     def title_for_database: () -> ::String?
 
-    def body: () -> ::String?
+    # def body: () -> ::String?
 
     def body=: (::String?) -> ::String?
 

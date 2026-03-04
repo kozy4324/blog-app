@@ -1,0 +1,59 @@
+# In schema.rb, this model is declared as:
+#
+# ```ruby
+# create_table "articles", force: :cascade do |t|
+#   t.text "body"
+#   t.datetime "created_at", null: false
+#   t.string "title"
+#   t.datetime "updated_at", null: false
+#   t.integer "user_id"
+#   t.index ["user_id"], name: "index_articles_on_user_id"
+# end
+# ```
+class Article
+  module GeneratedAttributeMethods
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.text "body"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `:body` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def body: () -> String?
+  end
+  include GeneratedAttributeMethods
+end
+# In schema.rb, this model is declared as:
+#
+# ```ruby
+# create_table "sessions", force: :cascade do |t|
+#   t.datetime "created_at", null: false
+#   t.string "ip_address"
+#   t.datetime "updated_at", null: false
+#   t.string "user_agent"
+#   t.integer "user_id", null: false
+#   t.index ["user_id"], name: "index_sessions_on_user_id"
+# end
+# ```
+class Session
+end
+# In schema.rb, this model is declared as:
+#
+# ```ruby
+# create_table "users", force: :cascade do |t|
+#   t.datetime "created_at", null: false
+#   t.string "email_address", null: false
+#   t.string "password_digest", null: false
+#   t.datetime "updated_at", null: false
+#   t.index ["email_address"], name: "index_users_on_email_address", unique: true
+# end
+# ```
+class User
+end
