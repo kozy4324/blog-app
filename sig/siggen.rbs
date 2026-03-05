@@ -11,6 +11,7 @@
 # end
 # ```
 class Article
+  include GeneratedAttributeMethods
   module GeneratedAttributeMethods
     # In schema.rb, this column is declared as:
     #
@@ -19,16 +20,75 @@ class Article
     # ```
     #
     # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
-    # passing `:body` as the `attr_name` argument.
+    # passing `"body"` as the `attr_name` argument.
     #
     # See the documentation comment for the delegated method below:
     #
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
-    def body: () -> String?
+    def body: () -> ::String?
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "title"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"title"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def title: () -> ::String?
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.integer "user_id"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"user_id"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def user_id: () -> ::Integer?
   end
-  include GeneratedAttributeMethods
 end
 # In schema.rb, this model is declared as:
 #
@@ -43,6 +103,84 @@ end
 # end
 # ```
 class Session
+  include GeneratedAttributeMethods
+  module GeneratedAttributeMethods
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "ip_address"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"ip_address"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def ip_address: () -> ::String?
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "user_agent"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"user_agent"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def user_agent: () -> ::String?
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.integer "user_id", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"user_id"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def user_id: () -> ::Integer
+  end
 end
 # In schema.rb, this model is declared as:
 #
@@ -56,4 +194,67 @@ end
 # end
 # ```
 class User
+  include GeneratedAttributeMethods
+  module GeneratedAttributeMethods
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "email_address", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"email_address"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def email_address: () -> ::String
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "password_digest", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"password_digest"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def password_digest: () -> ::String
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
 end

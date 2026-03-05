@@ -44,7 +44,7 @@ class ::Article < ::ApplicationRecord
 
     def id_for_database: () -> ::Integer
 
-    def title: () -> ::String?
+    # def title: () -> ::String?
 
     def title=: (::String?) -> ::String?
 
@@ -124,7 +124,7 @@ class ::Article < ::ApplicationRecord
 
     def body_for_database: () -> ::String?
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    # def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
@@ -164,7 +164,7 @@ class ::Article < ::ApplicationRecord
 
     def created_at_for_database: () -> ::Time
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
     def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
@@ -204,7 +204,7 @@ class ::Article < ::ApplicationRecord
 
     def updated_at_for_database: () -> ::Time
 
-    def user_id: () -> ::Integer?
+    # def user_id: () -> ::Integer?
 
     def user_id=: (::Integer?) -> ::Integer?
 

@@ -44,7 +44,7 @@ class ::User < ::ApplicationRecord
 
     def id_for_database: () -> ::Integer
 
-    def email_address: () -> ::String
+    # def email_address: () -> ::String
 
     def email_address=: (::String) -> ::String
 
@@ -84,7 +84,7 @@ class ::User < ::ApplicationRecord
 
     def email_address_for_database: () -> ::String
 
-    def password_digest: () -> ::String
+    # def password_digest: () -> ::String
 
     def password_digest=: (::String) -> ::String
 
@@ -124,7 +124,7 @@ class ::User < ::ApplicationRecord
 
     def password_digest_for_database: () -> ::String
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    # def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
@@ -164,7 +164,7 @@ class ::User < ::ApplicationRecord
 
     def created_at_for_database: () -> ::Time
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
     def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
