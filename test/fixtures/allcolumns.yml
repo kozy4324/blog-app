@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cbinary: <%= Base64.encode64("hello") %>
+  cboolean: false
+  cdate: 2026-03-05
+  cdatetime: 2026-03-05 23:29:43
+  cdecimal: 9.99
+  cfloat: 1.5
+  cinteger: 1
+  cjson: {a: 1}
+  cstring: MyString
+  ctext: MyText
+  ctime: 2026-03-05 23:29:43
+  ctimestamp: 2026-03-05 23:29:43

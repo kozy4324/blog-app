@@ -1,0 +1,2 @@
+class Allcolumn < ApplicationRecord
+end
