@@ -11,8 +11,13 @@ default: &default
   reconnection_interval: 15
 
 development:
-  <<: *default
-  database: storage/development.sqlite3
+  adapter: postgresql
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
+  database: <%= ENV.fetch("DB_NAME") { "blog_app_development" } %>
+  username: <%= ENV.fetch("DB_USERNAME") { "blog_app" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "password" } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

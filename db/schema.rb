@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_03_05_142943) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "allcolumns", force: :cascade do |t|
     t.binary "cbinary"
     t.boolean "cboolean"
@@ -24,7 +27,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_142943) do
     t.string "cstring"
     t.text "ctext"
     t.time "ctime"
-    t.datetime "ctimestamp"
+    t.datetime "ctimestamp", precision: nil
     t.datetime "updated_at", null: false
   end
 
