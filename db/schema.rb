@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_31_051626) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_142943) do
+  create_table "allcolumns", force: :cascade do |t|
+    t.binary "cbinary"
+    t.boolean "cboolean"
+    t.date "cdate"
+    t.datetime "cdatetime"
+    t.decimal "cdecimal"
+    t.float "cfloat"
+    t.integer "cinteger"
+    t.json "cjson"
+    t.datetime "created_at", null: false
+    t.string "cstring"
+    t.text "ctext"
+    t.time "ctime"
+    t.datetime "ctimestamp"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "articles", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
