@@ -46,7 +46,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cbinary: () -> ::String?
 
-    def cbinary=: (::String?) -> ::String?
+    # def cbinary=: (::String?) -> ::String?
 
     def cbinary?: () -> bool
 
@@ -86,7 +86,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cboolean: () -> bool?
 
-    def cboolean=: (bool?) -> bool?
+    # def cboolean=: (bool?) -> bool?
 
     def cboolean?: () -> bool
 
@@ -126,7 +126,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdate: () -> ::Date?
 
-    def cdate=: (::Date?) -> ::Date?
+    # def cdate=: (::Date?) -> ::Date?
 
     def cdate?: () -> bool
 
@@ -166,7 +166,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdatetime: () -> ::ActiveSupport::TimeWithZone?
 
-    def cdatetime=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+    # def cdatetime=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def cdatetime?: () -> bool
 
@@ -206,7 +206,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdecimal: () -> ::BigDecimal?
 
-    def cdecimal=: (::BigDecimal?) -> ::BigDecimal?
+    # def cdecimal=: (::BigDecimal?) -> ::BigDecimal?
 
     def cdecimal?: () -> bool
 
@@ -246,7 +246,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cfloat: () -> ::Float?
 
-    def cfloat=: (::Float?) -> ::Float?
+    # def cfloat=: (::Float?) -> ::Float?
 
     def cfloat?: () -> bool
 
@@ -286,7 +286,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cinteger: () -> ::Integer?
 
-    def cinteger=: (::Integer?) -> ::Integer?
+    # def cinteger=: (::Integer?) -> ::Integer?
 
     def cinteger?: () -> bool
 
@@ -326,7 +326,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cjson: () -> untyped
 
-    def cjson=: (untyped) -> untyped
+    # def cjson=: (untyped) -> untyped
 
     def cjson?: () -> bool
 
@@ -364,9 +364,49 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cjson_for_database: () -> untyped?
 
+    # def created_at: () -> ::ActiveSupport::TimeWithZone
+
+    # def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+
+    def created_at?: () -> bool
+
+    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+
+    def created_at_will_change!: () -> void
+
+    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+
+    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+
+    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+
+    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+
+    def saved_change_to_created_at?: () -> bool
+
+    def will_save_change_to_created_at?: () -> bool
+
+    def restore_created_at!: () -> void
+
+    def clear_created_at_change: () -> void
+
+    def created_at_before_type_cast: () -> ::Time
+
+    def created_at_for_database: () -> ::Time
+
     # def cstring: () -> ::String?
 
-    def cstring=: (::String?) -> ::String?
+    # def cstring=: (::String?) -> ::String?
 
     def cstring?: () -> bool
 
@@ -406,7 +446,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctext: () -> ::String?
 
-    def ctext=: (::String?) -> ::String?
+    # def ctext=: (::String?) -> ::String?
 
     def ctext?: () -> bool
 
@@ -446,7 +486,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctime: () -> ::Time?
 
-    def ctime=: (::Time?) -> ::Time?
+    # def ctime=: (::Time?) -> ::Time?
 
     def ctime?: () -> bool
 
@@ -486,7 +526,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctimestamp: () -> ::ActiveSupport::TimeWithZone?
 
-    def ctimestamp=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
+    # def ctimestamp=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
     def ctimestamp?: () -> bool
 
@@ -524,49 +564,89 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctimestamp_for_database: () -> ::Time?
 
-    # def created_at: () -> ::ActiveSupport::TimeWithZone
+    # def cvirtual_int: () -> ::Integer?
 
-    def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    # def cvirtual_int=: (::Integer?) -> ::Integer?
 
-    def created_at?: () -> bool
+    def cvirtual_int?: () -> bool
 
-    def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    def cvirtual_int_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
-    def created_at_change: () -> [ ::ActiveSupport::TimeWithZone?, ::ActiveSupport::TimeWithZone? ]
+    def cvirtual_int_change: () -> [ ::Integer?, ::Integer? ]
 
-    def created_at_will_change!: () -> void
+    def cvirtual_int_will_change!: () -> void
 
-    def created_at_was: () -> ::ActiveSupport::TimeWithZone?
+    def cvirtual_int_was: () -> ::Integer?
 
-    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    def cvirtual_int_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
-    def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    def cvirtual_int_previous_change: () -> ::Array[::Integer?]?
 
-    def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
+    def cvirtual_int_previously_was: () -> ::Integer?
 
-    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+    def cvirtual_int_before_last_save: () -> ::Integer?
 
-    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    def cvirtual_int_change_to_be_saved: () -> ::Array[::Integer?]?
 
-    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+    def cvirtual_int_in_database: () -> ::Integer?
 
-    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    def saved_change_to_cvirtual_int: () -> ::Array[::Integer?]?
 
-    def saved_change_to_created_at?: () -> bool
+    def saved_change_to_cvirtual_int?: () -> bool
 
-    def will_save_change_to_created_at?: () -> bool
+    def will_save_change_to_cvirtual_int?: () -> bool
 
-    def restore_created_at!: () -> void
+    def restore_cvirtual_int!: () -> void
 
-    def clear_created_at_change: () -> void
+    def clear_cvirtual_int_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    def cvirtual_int_before_type_cast: () -> ::Integer?
 
-    def created_at_for_database: () -> ::Time
+    def cvirtual_int_for_database: () -> ::Integer?
+
+    # def cvirtual_str: () -> ::String?
+
+    # def cvirtual_str=: (::String?) -> ::String?
+
+    def cvirtual_str?: () -> bool
+
+    def cvirtual_str_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def cvirtual_str_change: () -> [ ::String?, ::String? ]
+
+    def cvirtual_str_will_change!: () -> void
+
+    def cvirtual_str_was: () -> ::String?
+
+    def cvirtual_str_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+
+    def cvirtual_str_previous_change: () -> ::Array[::String?]?
+
+    def cvirtual_str_previously_was: () -> ::String?
+
+    def cvirtual_str_before_last_save: () -> ::String?
+
+    def cvirtual_str_change_to_be_saved: () -> ::Array[::String?]?
+
+    def cvirtual_str_in_database: () -> ::String?
+
+    def saved_change_to_cvirtual_str: () -> ::Array[::String?]?
+
+    def saved_change_to_cvirtual_str?: () -> bool
+
+    def will_save_change_to_cvirtual_str?: () -> bool
+
+    def restore_cvirtual_str!: () -> void
+
+    def clear_cvirtual_str_change: () -> void
+
+    def cvirtual_str_before_type_cast: () -> ::String?
+
+    def cvirtual_str_for_database: () -> ::String?
 
     # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
-    def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
+    # def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
     def updated_at?: () -> bool
 

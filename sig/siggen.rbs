@@ -43,6 +43,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.binary "cbinary"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cbinary"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cbinary=: (::String? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.boolean "cboolean"
     # ```
     #
@@ -55,6 +71,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def cboolean: () -> bool?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.boolean "cboolean"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cboolean"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cboolean=: (bool? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -75,6 +107,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.date "cdate"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cdate"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cdate=: (::Date? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.datetime "cdatetime"
     # ```
     #
@@ -87,6 +135,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def cdatetime: () -> ::ActiveSupport::TimeWithZone?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "cdatetime"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cdatetime"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cdatetime=: (::ActiveSupport::TimeWithZone? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -107,6 +171,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.decimal "cdecimal"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cdecimal"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cdecimal=: (::BigDecimal? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.float "cfloat"
     # ```
     #
@@ -119,6 +199,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def cfloat: () -> ::Float?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.float "cfloat"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cfloat"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cfloat=: (::Float? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -139,6 +235,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.integer "cinteger"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cinteger"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cinteger=: (::Integer? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.json "cjson"
     # ```
     #
@@ -151,6 +263,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def cjson: () -> untyped?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.json "cjson"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cjson"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cjson=: (untyped? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -171,6 +299,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def created_at=: (::ActiveSupport::TimeWithZone value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.string "cstring"
     # ```
     #
@@ -183,6 +327,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def cstring: () -> ::String?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "cstring"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cstring"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cstring=: (::String? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -203,6 +363,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.text "ctext"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"ctext"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def ctext=: (::String? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.time "ctime"
     # ```
     #
@@ -215,6 +391,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def ctime: () -> ::ActiveSupport::TimeWithZone?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.time "ctime"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"ctime"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def ctime=: (::ActiveSupport::TimeWithZone? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -235,6 +427,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.timestamp "ctimestamp"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"ctimestamp"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def ctimestamp=: (::ActiveSupport::TimeWithZone? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
     # ```
     #
@@ -247,6 +455,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def cvirtual_int: () -> ::Integer?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cvirtual_int"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cvirtual_int=: (::Integer? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -267,6 +491,22 @@ class Allcolumn
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"cvirtual_str"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def cvirtual_str=: (::String? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.datetime "updated_at", null: false
     # ```
     #
@@ -279,6 +519,22 @@ class Allcolumn
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def updated_at=: (::ActiveSupport::TimeWithZone value) -> void
   end
 end
 
@@ -317,6 +573,22 @@ class Article
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.text "body"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"body"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def body=: (::String? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.datetime "created_at", null: false
     # ```
     #
@@ -329,6 +601,22 @@ class Article
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def created_at: () -> ::ActiveSupport::TimeWithZone
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def created_at=: (::ActiveSupport::TimeWithZone value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -349,6 +637,22 @@ class Article
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.string "title"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"title"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def title=: (::String? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.datetime "updated_at", null: false
     # ```
     #
@@ -365,6 +669,22 @@ class Article
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def updated_at=: (::ActiveSupport::TimeWithZone value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.integer "user_id"
     # ```
     #
@@ -377,6 +697,22 @@ class Article
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def user_id: () -> ::Integer?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.integer "user_id"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"user_id"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def user_id=: (::Integer? value) -> void
   end
 end
 
@@ -415,6 +751,22 @@ class Session
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def created_at=: (::ActiveSupport::TimeWithZone value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.string "ip_address"
     # ```
     #
@@ -427,6 +779,22 @@ class Session
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def ip_address: () -> ::String?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "ip_address"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"ip_address"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def ip_address=: (::String? value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -447,6 +815,22 @@ class Session
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def updated_at=: (::ActiveSupport::TimeWithZone value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.string "user_agent"
     # ```
     #
@@ -463,6 +847,22 @@ class Session
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.string "user_agent"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"user_agent"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def user_agent=: (::String? value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.integer "user_id", null: false
     # ```
     #
@@ -475,6 +875,22 @@ class Session
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def user_id: () -> ::Integer
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.integer "user_id", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"user_id"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def user_id=: (::Integer value) -> void
   end
 end
 
@@ -512,6 +928,22 @@ class User
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def created_at=: (::ActiveSupport::TimeWithZone value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.string "email_address", null: false
     # ```
     #
@@ -524,6 +956,22 @@ class User
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def email_address: () -> ::String
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "email_address", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"email_address"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def email_address=: (::String value) -> void
 
     # In schema.rb, this column is declared as:
     #
@@ -544,6 +992,22 @@ class User
     # In schema.rb, this column is declared as:
     #
     # ```ruby
+    # t.string "password_digest", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"password_digest"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def password_digest=: (::String value) -> void
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
     # t.datetime "updated_at", null: false
     # ```
     #
@@ -556,5 +1020,21 @@ class User
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Write` `#_write_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Updates the attribute identified by <tt>attr_name</tt> with the
+    # specified +value+. Empty strings for Integer and Float columns are
+    # turned into +nil+.
+    def updated_at=: (::ActiveSupport::TimeWithZone value) -> void
   end
 end
