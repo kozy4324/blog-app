@@ -7,6 +7,6 @@ class AllcolumnTest < ActiveSupport::TestCase
     puts a.ctime.time_zone
     puts a.ctime.class
 
-    assert true
+    refute_nil a.ctime
   end
 end
