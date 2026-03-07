@@ -1,7 +1,7 @@
 require "test_helper"
 
 class AllcolumnTest < ActiveSupport::TestCase
-  test "the truth" do
+  test "the truth" do # rubocop:disable Minitest/MultipleAssertions
     a = Allcolumn.first
 
     assert_equal a&.cbinary.class, ::String
