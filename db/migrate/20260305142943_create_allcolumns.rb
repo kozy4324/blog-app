@@ -13,6 +13,8 @@ class CreateAllcolumns < ActiveRecord::Migration[8.1]
       t.text :ctext
       t.time :ctime
       t.timestamp :ctimestamp
+      t.virtual :cvirtual_int, type: :integer, as: "length(cstring)", stored: true
+      t.virtual :cvirtual_str, type: :string, as: "cstring || ctext", stored: true
 
       t.timestamps
     end

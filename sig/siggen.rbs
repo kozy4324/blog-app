@@ -1,6 +1,290 @@
 # In schema.rb, this model is declared as:
 #
 # ```ruby
+# create_table "allcolumns", force: :cascade do |t|
+#   t.binary "cbinary"
+#   t.boolean "cboolean"
+#   t.date "cdate"
+#   t.datetime "cdatetime"
+#   t.decimal "cdecimal"
+#   t.float "cfloat"
+#   t.integer "cinteger"
+#   t.json "cjson"
+#   t.datetime "created_at", null: false
+#   t.string "cstring"
+#   t.text "ctext"
+#   t.time "ctime"
+#   t.timestamp "ctimestamp"
+#   t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
+#   t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
+#   t.datetime "updated_at", null: false
+# end
+# ```
+class Allcolumn
+  include GeneratedAttributeMethods
+
+  module GeneratedAttributeMethods
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.binary "cbinary"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cbinary"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cbinary: () -> ::String?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.boolean "cboolean"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cboolean"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cboolean: () -> bool?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.date "cdate"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cdate"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cdate: () -> ::Date?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "cdatetime"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cdatetime"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cdatetime: () -> ::ActiveSupport::TimeWithZone?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.decimal "cdecimal"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cdecimal"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cdecimal: () -> ::BigDecimal?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.float "cfloat"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cfloat"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cfloat: () -> ::Float?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.integer "cinteger"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cinteger"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cinteger: () -> ::Integer?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.json "cjson"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cjson"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cjson: () -> untyped?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"created_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def created_at: () -> ::ActiveSupport::TimeWithZone
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.string "cstring"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cstring"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cstring: () -> ::String?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.text "ctext"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"ctext"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def ctext: () -> ::String?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.time "ctime"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"ctime"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def ctime: () -> ::ActiveSupport::TimeWithZone?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.timestamp "ctimestamp"
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"ctimestamp"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def ctimestamp: () -> ::ActiveSupport::TimeWithZone?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cvirtual_int"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cvirtual_int: () -> ::Integer?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"cvirtual_str"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def cvirtual_str: () -> ::String?
+
+    # In schema.rb, this column is declared as:
+    #
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    # This method delegates to `ActiveRecord::AttributeMethods::Read` `#_read_attribute`,
+    # passing `"updated_at"` as the `attr_name` argument.
+    #
+    # See the documentation comment for the delegated method below:
+    #
+    # Returns the value of the attribute identified by <tt>attr_name</tt> after
+    # it has been typecast (for example, "2004-12-12" in a date column is cast
+    # to a date object, like Date.new(2004, 12, 12)).
+    def updated_at: () -> ::ActiveSupport::TimeWithZone
+  end
+end
+
+# In schema.rb, this model is declared as:
+#
+# ```ruby
 # create_table "articles", force: :cascade do |t|
 #   t.text "body"
 #   t.datetime "created_at", null: false
@@ -12,6 +296,7 @@
 # ```
 class Article
   include GeneratedAttributeMethods
+
   module GeneratedAttributeMethods
     # In schema.rb, this column is declared as:
     #
@@ -28,6 +313,7 @@ class Article
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def body: () -> ::String?
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -43,6 +329,7 @@ class Article
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def created_at: () -> ::ActiveSupport::TimeWithZone
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -58,6 +345,7 @@ class Article
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def title: () -> ::String?
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -73,6 +361,7 @@ class Article
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -90,6 +379,7 @@ class Article
     def user_id: () -> ::Integer?
   end
 end
+
 # In schema.rb, this model is declared as:
 #
 # ```ruby
@@ -104,6 +394,7 @@ end
 # ```
 class Session
   include GeneratedAttributeMethods
+
   module GeneratedAttributeMethods
     # In schema.rb, this column is declared as:
     #
@@ -120,6 +411,7 @@ class Session
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def created_at: () -> ::ActiveSupport::TimeWithZone
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -135,6 +427,7 @@ class Session
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def ip_address: () -> ::String?
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -150,6 +443,7 @@ class Session
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def updated_at: () -> ::ActiveSupport::TimeWithZone
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -165,6 +459,7 @@ class Session
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def user_agent: () -> ::String?
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -182,6 +477,7 @@ class Session
     def user_id: () -> ::Integer
   end
 end
+
 # In schema.rb, this model is declared as:
 #
 # ```ruby
@@ -195,6 +491,7 @@ end
 # ```
 class User
   include GeneratedAttributeMethods
+
   module GeneratedAttributeMethods
     # In schema.rb, this column is declared as:
     #
@@ -211,6 +508,7 @@ class User
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def created_at: () -> ::ActiveSupport::TimeWithZone
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -226,6 +524,7 @@ class User
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def email_address: () -> ::String
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby
@@ -241,6 +540,7 @@ class User
     # it has been typecast (for example, "2004-12-12" in a date column is cast
     # to a date object, like Date.new(2004, 12, 12)).
     def password_digest: () -> ::String
+
     # In schema.rb, this column is declared as:
     #
     # ```ruby

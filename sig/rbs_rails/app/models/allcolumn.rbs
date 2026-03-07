@@ -44,7 +44,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def id_for_database: () -> ::Integer
 
-    def cbinary: () -> ::String?
+    # def cbinary: () -> ::String?
 
     def cbinary=: (::String?) -> ::String?
 
@@ -84,7 +84,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cbinary_for_database: () -> ::String?
 
-    def cboolean: () -> bool?
+    # def cboolean: () -> bool?
 
     def cboolean=: (bool?) -> bool?
 
@@ -124,7 +124,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cboolean_for_database: () -> bool?
 
-    def cdate: () -> ::Date?
+    # def cdate: () -> ::Date?
 
     def cdate=: (::Date?) -> ::Date?
 
@@ -164,7 +164,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cdate_for_database: () -> ::Date?
 
-    def cdatetime: () -> ::ActiveSupport::TimeWithZone?
+    # def cdatetime: () -> ::ActiveSupport::TimeWithZone?
 
     def cdatetime=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
@@ -204,7 +204,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cdatetime_for_database: () -> ::Time?
 
-    def cdecimal: () -> ::BigDecimal?
+    # def cdecimal: () -> ::BigDecimal?
 
     def cdecimal=: (::BigDecimal?) -> ::BigDecimal?
 
@@ -244,7 +244,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cdecimal_for_database: () -> ::BigDecimal?
 
-    def cfloat: () -> ::Float?
+    # def cfloat: () -> ::Float?
 
     def cfloat=: (::Float?) -> ::Float?
 
@@ -284,7 +284,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cfloat_for_database: () -> ::Float?
 
-    def cinteger: () -> ::Integer?
+    # def cinteger: () -> ::Integer?
 
     def cinteger=: (::Integer?) -> ::Integer?
 
@@ -324,7 +324,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cinteger_for_database: () -> ::Integer?
 
-    def cjson: () -> untyped
+    # def cjson: () -> untyped
 
     def cjson=: (untyped) -> untyped
 
@@ -364,7 +364,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cjson_for_database: () -> untyped?
 
-    def cstring: () -> ::String?
+    # def cstring: () -> ::String?
 
     def cstring=: (::String?) -> ::String?
 
@@ -404,7 +404,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cstring_for_database: () -> ::String?
 
-    def ctext: () -> ::String?
+    # def ctext: () -> ::String?
 
     def ctext=: (::String?) -> ::String?
 
@@ -444,7 +444,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctext_for_database: () -> ::String?
 
-    def ctime: () -> ::Time?
+    # def ctime: () -> ::Time?
 
     def ctime=: (::Time?) -> ::Time?
 
@@ -484,7 +484,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctime_for_database: () -> ::Time?
 
-    def ctimestamp: () -> ::ActiveSupport::TimeWithZone?
+    # def ctimestamp: () -> ::ActiveSupport::TimeWithZone?
 
     def ctimestamp=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
@@ -524,7 +524,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctimestamp_for_database: () -> ::Time?
 
-    def created_at: () -> ::ActiveSupport::TimeWithZone
+    # def created_at: () -> ::ActiveSupport::TimeWithZone
 
     def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
@@ -564,7 +564,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def created_at_for_database: () -> ::Time
 
-    def updated_at: () -> ::ActiveSupport::TimeWithZone
+    # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
     def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 

@@ -24,7 +24,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_142943) do
     t.string "cstring"
     t.text "ctext"
     t.time "ctime"
-    t.datetime "ctimestamp"
+    t.timestamp "ctimestamp"
+    t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
+    t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
     t.datetime "updated_at", null: false
   end
 
