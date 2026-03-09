@@ -80,7 +80,7 @@ class ::Article < ::ApplicationRecord
 
     def clear_body_change: () -> void
 
-    def body_before_type_cast: () -> ::String?
+    # def body_before_type_cast: () -> ::String?
 
     def body_for_database: () -> ::String?
 
@@ -120,7 +120,7 @@ class ::Article < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    # def created_at_before_type_cast: () -> ::Time
 
     def created_at_for_database: () -> ::Time
 
@@ -160,7 +160,7 @@ class ::Article < ::ApplicationRecord
 
     def clear_title_change: () -> void
 
-    def title_before_type_cast: () -> ::String?
+    # def title_before_type_cast: () -> ::String?
 
     def title_for_database: () -> ::String?
 
@@ -200,7 +200,7 @@ class ::Article < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    # def updated_at_before_type_cast: () -> ::Time
 
     def updated_at_for_database: () -> ::Time
 
@@ -240,7 +240,7 @@ class ::Article < ::ApplicationRecord
 
     def clear_user_id_change: () -> void
 
-    def user_id_before_type_cast: () -> ::Integer?
+    # def user_id_before_type_cast: () -> ::Integer?
 
     def user_id_for_database: () -> ::Integer?
   end

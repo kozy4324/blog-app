@@ -80,7 +80,7 @@ class ::User < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    # def created_at_before_type_cast: () -> ::Time
 
     def created_at_for_database: () -> ::Time
 
@@ -120,7 +120,7 @@ class ::User < ::ApplicationRecord
 
     def clear_email_address_change: () -> void
 
-    def email_address_before_type_cast: () -> ::String
+    # def email_address_before_type_cast: () -> ::String
 
     def email_address_for_database: () -> ::String
 
@@ -160,7 +160,7 @@ class ::User < ::ApplicationRecord
 
     def clear_password_digest_change: () -> void
 
-    def password_digest_before_type_cast: () -> ::String
+    # def password_digest_before_type_cast: () -> ::String
 
     def password_digest_for_database: () -> ::String
 
@@ -200,7 +200,7 @@ class ::User < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    # def updated_at_before_type_cast: () -> ::Time
 
     def updated_at_for_database: () -> ::Time
   end

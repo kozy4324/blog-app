@@ -80,7 +80,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cbinary_change: () -> void
 
-    def cbinary_before_type_cast: () -> ::String?
+    # def cbinary_before_type_cast: () -> ::String?
 
     def cbinary_for_database: () -> ::String?
 
@@ -120,7 +120,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cboolean_change: () -> void
 
-    def cboolean_before_type_cast: () -> bool?
+    # def cboolean_before_type_cast: () -> bool?
 
     def cboolean_for_database: () -> bool?
 
@@ -160,7 +160,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cdate_change: () -> void
 
-    def cdate_before_type_cast: () -> ::Date?
+    # def cdate_before_type_cast: () -> ::Date?
 
     def cdate_for_database: () -> ::Date?
 
@@ -200,7 +200,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cdatetime_change: () -> void
 
-    def cdatetime_before_type_cast: () -> ::Time?
+    # def cdatetime_before_type_cast: () -> ::Time?
 
     def cdatetime_for_database: () -> ::Time?
 
@@ -240,7 +240,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cdecimal_change: () -> void
 
-    def cdecimal_before_type_cast: () -> ::BigDecimal?
+    # def cdecimal_before_type_cast: () -> ::BigDecimal?
 
     def cdecimal_for_database: () -> ::BigDecimal?
 
@@ -280,7 +280,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cfloat_change: () -> void
 
-    def cfloat_before_type_cast: () -> ::Float?
+    # def cfloat_before_type_cast: () -> ::Float?
 
     def cfloat_for_database: () -> ::Float?
 
@@ -320,7 +320,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cinteger_change: () -> void
 
-    def cinteger_before_type_cast: () -> ::Integer?
+    # def cinteger_before_type_cast: () -> ::Integer?
 
     def cinteger_for_database: () -> ::Integer?
 
@@ -360,7 +360,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cjson_change: () -> void
 
-    def cjson_before_type_cast: () -> untyped?
+    # def cjson_before_type_cast: () -> untyped?
 
     def cjson_for_database: () -> untyped?
 
@@ -400,7 +400,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_created_at_change: () -> void
 
-    def created_at_before_type_cast: () -> ::Time
+    # def created_at_before_type_cast: () -> ::Time
 
     def created_at_for_database: () -> ::Time
 
@@ -440,7 +440,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cstring_change: () -> void
 
-    def cstring_before_type_cast: () -> ::String?
+    # def cstring_before_type_cast: () -> ::String?
 
     def cstring_for_database: () -> ::String?
 
@@ -480,7 +480,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_ctext_change: () -> void
 
-    def ctext_before_type_cast: () -> ::String?
+    # def ctext_before_type_cast: () -> ::String?
 
     def ctext_for_database: () -> ::String?
 
@@ -520,7 +520,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_ctime_change: () -> void
 
-    def ctime_before_type_cast: () -> ::Time?
+    # def ctime_before_type_cast: () -> ::Time?
 
     def ctime_for_database: () -> ::Time?
 
@@ -560,7 +560,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_ctimestamp_change: () -> void
 
-    def ctimestamp_before_type_cast: () -> ::Time?
+    # def ctimestamp_before_type_cast: () -> ::Time?
 
     def ctimestamp_for_database: () -> ::Time?
 
@@ -600,7 +600,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cvirtual_int_change: () -> void
 
-    def cvirtual_int_before_type_cast: () -> ::Integer?
+    # def cvirtual_int_before_type_cast: () -> ::Integer?
 
     def cvirtual_int_for_database: () -> ::Integer?
 
@@ -640,7 +640,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_cvirtual_str_change: () -> void
 
-    def cvirtual_str_before_type_cast: () -> ::String?
+    # def cvirtual_str_before_type_cast: () -> ::String?
 
     def cvirtual_str_for_database: () -> ::String?
 
@@ -680,7 +680,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def clear_updated_at_change: () -> void
 
-    def updated_at_before_type_cast: () -> ::Time
+    # def updated_at_before_type_cast: () -> ::Time
 
     def updated_at_for_database: () -> ::Time
   end
