@@ -82,7 +82,7 @@ class ::Article < ::ApplicationRecord
 
     # def body_before_type_cast: () -> ::String?
 
-    def body_for_database: () -> ::String?
+    # def body_for_database: () -> ::String?
 
     # def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -122,7 +122,7 @@ class ::Article < ::ApplicationRecord
 
     # def created_at_before_type_cast: () -> ::Time
 
-    def created_at_for_database: () -> ::Time
+    # def created_at_for_database: () -> ::Time
 
     # def title: () -> ::String?
 
@@ -162,7 +162,7 @@ class ::Article < ::ApplicationRecord
 
     # def title_before_type_cast: () -> ::String?
 
-    def title_for_database: () -> ::String?
+    # def title_for_database: () -> ::String?
 
     # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -202,7 +202,7 @@ class ::Article < ::ApplicationRecord
 
     # def updated_at_before_type_cast: () -> ::Time
 
-    def updated_at_for_database: () -> ::Time
+    # def updated_at_for_database: () -> ::Time
 
     # def user_id: () -> ::Integer?
 
@@ -242,7 +242,7 @@ class ::Article < ::ApplicationRecord
 
     # def user_id_before_type_cast: () -> ::Integer?
 
-    def user_id_for_database: () -> ::Integer?
+    # def user_id_for_database: () -> ::Integer?
   end
   include ::Article::GeneratedAttributeMethods
   module ::Article::GeneratedAliasAttributeMethods

@@ -82,7 +82,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cbinary_before_type_cast: () -> ::String?
 
-    def cbinary_for_database: () -> ::String?
+    # def cbinary_for_database: () -> ::String?
 
     # def cboolean: () -> bool?
 
@@ -122,7 +122,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cboolean_before_type_cast: () -> bool?
 
-    def cboolean_for_database: () -> bool?
+    # def cboolean_for_database: () -> bool?
 
     # def cdate: () -> ::Date?
 
@@ -162,7 +162,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdate_before_type_cast: () -> ::Date?
 
-    def cdate_for_database: () -> ::Date?
+    # def cdate_for_database: () -> ::Date?
 
     # def cdatetime: () -> ::ActiveSupport::TimeWithZone?
 
@@ -202,7 +202,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdatetime_before_type_cast: () -> ::Time?
 
-    def cdatetime_for_database: () -> ::Time?
+    # def cdatetime_for_database: () -> ::Time?
 
     # def cdecimal: () -> ::BigDecimal?
 
@@ -242,7 +242,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdecimal_before_type_cast: () -> ::BigDecimal?
 
-    def cdecimal_for_database: () -> ::BigDecimal?
+    # def cdecimal_for_database: () -> ::BigDecimal?
 
     # def cfloat: () -> ::Float?
 
@@ -282,7 +282,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cfloat_before_type_cast: () -> ::Float?
 
-    def cfloat_for_database: () -> ::Float?
+    # def cfloat_for_database: () -> ::Float?
 
     # def cinteger: () -> ::Integer?
 
@@ -322,7 +322,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cinteger_before_type_cast: () -> ::Integer?
 
-    def cinteger_for_database: () -> ::Integer?
+    # def cinteger_for_database: () -> ::Integer?
 
     # def cjson: () -> untyped
 
@@ -362,7 +362,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cjson_before_type_cast: () -> untyped?
 
-    def cjson_for_database: () -> untyped?
+    # def cjson_for_database: () -> untyped?
 
     # def created_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -402,7 +402,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def created_at_before_type_cast: () -> ::Time
 
-    def created_at_for_database: () -> ::Time
+    # def created_at_for_database: () -> ::Time
 
     # def cstring: () -> ::String?
 
@@ -442,7 +442,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cstring_before_type_cast: () -> ::String?
 
-    def cstring_for_database: () -> ::String?
+    # def cstring_for_database: () -> ::String?
 
     # def ctext: () -> ::String?
 
@@ -482,7 +482,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctext_before_type_cast: () -> ::String?
 
-    def ctext_for_database: () -> ::String?
+    # def ctext_for_database: () -> ::String?
 
     # def ctime: () -> ::Time?
 
@@ -522,7 +522,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctime_before_type_cast: () -> ::Time?
 
-    def ctime_for_database: () -> ::Time?
+    # def ctime_for_database: () -> ::Time?
 
     # def ctimestamp: () -> ::ActiveSupport::TimeWithZone?
 
@@ -562,7 +562,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctimestamp_before_type_cast: () -> ::Time?
 
-    def ctimestamp_for_database: () -> ::Time?
+    # def ctimestamp_for_database: () -> ::Time?
 
     # def cvirtual_int: () -> ::Integer?
 
@@ -602,7 +602,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cvirtual_int_before_type_cast: () -> ::Integer?
 
-    def cvirtual_int_for_database: () -> ::Integer?
+    # def cvirtual_int_for_database: () -> ::Integer?
 
     # def cvirtual_str: () -> ::String?
 
@@ -642,7 +642,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cvirtual_str_before_type_cast: () -> ::String?
 
-    def cvirtual_str_for_database: () -> ::String?
+    # def cvirtual_str_for_database: () -> ::String?
 
     # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -682,7 +682,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def updated_at_before_type_cast: () -> ::Time
 
-    def updated_at_for_database: () -> ::Time
+    # def updated_at_for_database: () -> ::Time
   end
   include ::Allcolumn::GeneratedAttributeMethods
   module ::Allcolumn::GeneratedAliasAttributeMethods

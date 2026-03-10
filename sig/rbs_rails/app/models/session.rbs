@@ -82,7 +82,7 @@ class ::Session < ::ApplicationRecord
 
     # def created_at_before_type_cast: () -> ::Time
 
-    def created_at_for_database: () -> ::Time
+    # def created_at_for_database: () -> ::Time
 
     # def ip_address: () -> ::String?
 
@@ -122,7 +122,7 @@ class ::Session < ::ApplicationRecord
 
     # def ip_address_before_type_cast: () -> ::String?
 
-    def ip_address_for_database: () -> ::String?
+    # def ip_address_for_database: () -> ::String?
 
     # def updated_at: () -> ::ActiveSupport::TimeWithZone
 
@@ -162,7 +162,7 @@ class ::Session < ::ApplicationRecord
 
     # def updated_at_before_type_cast: () -> ::Time
 
-    def updated_at_for_database: () -> ::Time
+    # def updated_at_for_database: () -> ::Time
 
     # def user_agent: () -> ::String?
 
@@ -202,7 +202,7 @@ class ::Session < ::ApplicationRecord
 
     # def user_agent_before_type_cast: () -> ::String?
 
-    def user_agent_for_database: () -> ::String?
+    # def user_agent_for_database: () -> ::String?
 
     # def user_id: () -> ::Integer
 
@@ -242,7 +242,7 @@ class ::Session < ::ApplicationRecord
 
     # def user_id_before_type_cast: () -> ::Integer
 
-    def user_id_for_database: () -> ::Integer
+    # def user_id_for_database: () -> ::Integer
   end
   include ::Session::GeneratedAttributeMethods
   module ::Session::GeneratedAliasAttributeMethods

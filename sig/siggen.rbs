@@ -58,6 +58,12 @@ class Allcolumn
     def cbinary_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.binary "cbinary"
+    # ```
+    #
+    def cbinary_for_database: () -> untyped
+
+    # ```ruby
     # t.boolean "cboolean"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -89,6 +95,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def cboolean_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.boolean "cboolean"
+    # ```
+    #
+    def cboolean_for_database: () -> untyped
 
     # ```ruby
     # t.date "cdate"
@@ -124,6 +136,12 @@ class Allcolumn
     def cdate_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.date "cdate"
+    # ```
+    #
+    def cdate_for_database: () -> untyped
+
+    # ```ruby
     # t.datetime "cdatetime"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -155,6 +173,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def cdatetime_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.datetime "cdatetime"
+    # ```
+    #
+    def cdatetime_for_database: () -> untyped
 
     # ```ruby
     # t.decimal "cdecimal"
@@ -190,6 +214,12 @@ class Allcolumn
     def cdecimal_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.decimal "cdecimal"
+    # ```
+    #
+    def cdecimal_for_database: () -> untyped
+
+    # ```ruby
     # t.float "cfloat"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -221,6 +251,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def cfloat_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.float "cfloat"
+    # ```
+    #
+    def cfloat_for_database: () -> untyped
 
     # ```ruby
     # t.integer "cinteger"
@@ -256,6 +292,12 @@ class Allcolumn
     def cinteger_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.integer "cinteger"
+    # ```
+    #
+    def cinteger_for_database: () -> untyped
+
+    # ```ruby
     # t.json "cjson"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -287,6 +329,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def cjson_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.json "cjson"
+    # ```
+    #
+    def cjson_for_database: () -> untyped
 
     # ```ruby
     # t.datetime "created_at", null: false
@@ -322,6 +370,12 @@ class Allcolumn
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    def created_at_for_database: () -> untyped
+
+    # ```ruby
     # t.string "cstring"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -353,6 +407,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def cstring_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.string "cstring"
+    # ```
+    #
+    def cstring_for_database: () -> untyped
 
     # ```ruby
     # t.text "ctext"
@@ -388,6 +448,12 @@ class Allcolumn
     def ctext_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.text "ctext"
+    # ```
+    #
+    def ctext_for_database: () -> untyped
+
+    # ```ruby
     # t.time "ctime"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -419,6 +485,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def ctime_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.time "ctime"
+    # ```
+    #
+    def ctime_for_database: () -> untyped
 
     # ```ruby
     # t.timestamp "ctimestamp"
@@ -454,6 +526,12 @@ class Allcolumn
     def ctimestamp_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.timestamp "ctimestamp"
+    # ```
+    #
+    def ctimestamp_for_database: () -> untyped
+
+    # ```ruby
     # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -485,6 +563,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def cvirtual_int_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
+    # ```
+    #
+    def cvirtual_int_for_database: () -> untyped
 
     # ```ruby
     # t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
@@ -520,6 +604,12 @@ class Allcolumn
     def cvirtual_str_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
+    # ```
+    #
+    def cvirtual_str_for_database: () -> untyped
+
+    # ```ruby
     # t.datetime "updated_at", null: false
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -551,6 +641,12 @@ class Allcolumn
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def updated_at_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    def updated_at_for_database: () -> untyped
   end
 end
 
@@ -604,6 +700,12 @@ class Article
     def body_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.text "body"
+    # ```
+    #
+    def body_for_database: () -> untyped
+
+    # ```ruby
     # t.datetime "created_at", null: false
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -635,6 +737,12 @@ class Article
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def created_at_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    def created_at_for_database: () -> untyped
 
     # ```ruby
     # t.string "title"
@@ -670,6 +778,12 @@ class Article
     def title_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.string "title"
+    # ```
+    #
+    def title_for_database: () -> untyped
+
+    # ```ruby
     # t.datetime "updated_at", null: false
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -703,6 +817,12 @@ class Article
     def updated_at_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    def updated_at_for_database: () -> untyped
+
+    # ```ruby
     # t.integer "user_id"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -734,6 +854,12 @@ class Article
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def user_id_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.integer "user_id"
+    # ```
+    #
+    def user_id_for_database: () -> untyped
   end
 end
 
@@ -787,6 +913,12 @@ class Session
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    def created_at_for_database: () -> untyped
+
+    # ```ruby
     # t.string "ip_address"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -818,6 +950,12 @@ class Session
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def ip_address_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.string "ip_address"
+    # ```
+    #
+    def ip_address_for_database: () -> untyped
 
     # ```ruby
     # t.datetime "updated_at", null: false
@@ -853,6 +991,12 @@ class Session
     def updated_at_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    def updated_at_for_database: () -> untyped
+
+    # ```ruby
     # t.string "user_agent"
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -886,6 +1030,12 @@ class Session
     def user_agent_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.string "user_agent"
+    # ```
+    #
+    def user_agent_for_database: () -> untyped
+
+    # ```ruby
     # t.integer "user_id", null: false
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -917,6 +1067,12 @@ class Session
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def user_id_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.integer "user_id", null: false
+    # ```
+    #
+    def user_id_for_database: () -> untyped
   end
 end
 
@@ -969,6 +1125,12 @@ class User
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    #
+    def created_at_for_database: () -> untyped
+
+    # ```ruby
     # t.string "email_address", null: false
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -1000,6 +1162,12 @@ class User
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def email_address_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.string "email_address", null: false
+    # ```
+    #
+    def email_address_for_database: () -> untyped
 
     # ```ruby
     # t.string "password_digest", null: false
@@ -1035,6 +1203,12 @@ class User
     def password_digest_before_type_cast: () -> untyped
 
     # ```ruby
+    # t.string "password_digest", null: false
+    # ```
+    #
+    def password_digest_for_database: () -> untyped
+
+    # ```ruby
     # t.datetime "updated_at", null: false
     # ```
     # Returns the value of the attribute identified by <tt>attr_name</tt> after
@@ -1066,5 +1240,11 @@ class User
     #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
     #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     def updated_at_before_type_cast: () -> untyped
+
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    #
+    def updated_at_for_database: () -> untyped
   end
 end
