@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pocke/rbs_rails.git
-  revision: c63671e36b744425713f8a0b279e04adb50dd6a4
+  revision: fe668d7435308b0002b33e029ca9073a48a941d4
   branch: master
   specs:
     rbs_rails (0.13.0)
@@ -472,7 +472,7 @@ GEM
     thruster (0.1.19-aarch64-linux)
     thruster (0.1.19-arm64-darwin)
     thruster (0.1.19-x86_64-linux)
-    timeout (0.6.0)
+    timeout (0.6.1)
     traceologist (0.2.0)
     tsort (0.2.0)
     turbo-rails (2.0.23)
