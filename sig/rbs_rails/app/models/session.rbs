@@ -48,7 +48,7 @@ class ::Session < ::ApplicationRecord
 
     # def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
-    def created_at?: () -> bool
+    # def created_at?: () -> bool
 
     def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -88,7 +88,7 @@ class ::Session < ::ApplicationRecord
 
     # def ip_address=: (::String?) -> ::String?
 
-    def ip_address?: () -> bool
+    # def ip_address?: () -> bool
 
     def ip_address_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -128,7 +128,7 @@ class ::Session < ::ApplicationRecord
 
     # def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
-    def updated_at?: () -> bool
+    # def updated_at?: () -> bool
 
     def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -168,7 +168,7 @@ class ::Session < ::ApplicationRecord
 
     # def user_agent=: (::String?) -> ::String?
 
-    def user_agent?: () -> bool
+    # def user_agent?: () -> bool
 
     def user_agent_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -208,7 +208,7 @@ class ::Session < ::ApplicationRecord
 
     # def user_id=: (::Integer) -> ::Integer
 
-    def user_id?: () -> bool
+    # def user_id?: () -> bool
 
     def user_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 

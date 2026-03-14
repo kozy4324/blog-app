@@ -48,7 +48,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cbinary=: (::String?) -> ::String?
 
-    def cbinary?: () -> bool
+    # def cbinary?: () -> bool
 
     def cbinary_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -88,7 +88,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cboolean=: (bool?) -> bool?
 
-    def cboolean?: () -> bool
+    # def cboolean?: () -> bool
 
     def cboolean_changed?: (?from: bool?, ?to: bool?) -> bool
 
@@ -128,7 +128,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdate=: (::Date?) -> ::Date?
 
-    def cdate?: () -> bool
+    # def cdate?: () -> bool
 
     def cdate_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
 
@@ -168,7 +168,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdatetime=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
-    def cdatetime?: () -> bool
+    # def cdatetime?: () -> bool
 
     def cdatetime_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -208,7 +208,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cdecimal=: (::BigDecimal?) -> ::BigDecimal?
 
-    def cdecimal?: () -> bool
+    # def cdecimal?: () -> bool
 
     def cdecimal_changed?: (?from: ::BigDecimal?, ?to: ::BigDecimal?) -> bool
 
@@ -248,7 +248,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cfloat=: (::Float?) -> ::Float?
 
-    def cfloat?: () -> bool
+    # def cfloat?: () -> bool
 
     def cfloat_changed?: (?from: ::Float?, ?to: ::Float?) -> bool
 
@@ -288,7 +288,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cinteger=: (::Integer?) -> ::Integer?
 
-    def cinteger?: () -> bool
+    # def cinteger?: () -> bool
 
     def cinteger_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
@@ -328,7 +328,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cjson=: (untyped) -> untyped
 
-    def cjson?: () -> bool
+    # def cjson?: () -> bool
 
     def cjson_changed?: (?from: untyped, ?to: untyped) -> bool
 
@@ -368,7 +368,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
-    def created_at?: () -> bool
+    # def created_at?: () -> bool
 
     def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -408,7 +408,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cstring=: (::String?) -> ::String?
 
-    def cstring?: () -> bool
+    # def cstring?: () -> bool
 
     def cstring_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -448,7 +448,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctext=: (::String?) -> ::String?
 
-    def ctext?: () -> bool
+    # def ctext?: () -> bool
 
     def ctext_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -488,7 +488,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctime=: (::Time?) -> ::Time?
 
-    def ctime?: () -> bool
+    # def ctime?: () -> bool
 
     def ctime_changed?: (?from: ::Time?, ?to: ::Time?) -> bool
 
@@ -528,7 +528,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def ctimestamp=: (::ActiveSupport::TimeWithZone?) -> ::ActiveSupport::TimeWithZone?
 
-    def ctimestamp?: () -> bool
+    # def ctimestamp?: () -> bool
 
     def ctimestamp_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -568,7 +568,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cvirtual_int=: (::Integer?) -> ::Integer?
 
-    def cvirtual_int?: () -> bool
+    # def cvirtual_int?: () -> bool
 
     def cvirtual_int_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
@@ -608,7 +608,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def cvirtual_str=: (::String?) -> ::String?
 
-    def cvirtual_str?: () -> bool
+    # def cvirtual_str?: () -> bool
 
     def cvirtual_str_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -648,7 +648,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     # def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
-    def updated_at?: () -> bool
+    # def updated_at?: () -> bool
 
     def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 

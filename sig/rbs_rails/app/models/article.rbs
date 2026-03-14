@@ -48,7 +48,7 @@ class ::Article < ::ApplicationRecord
 
     # def body=: (::String?) -> ::String?
 
-    def body?: () -> bool
+    # def body?: () -> bool
 
     def body_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -88,7 +88,7 @@ class ::Article < ::ApplicationRecord
 
     # def created_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
-    def created_at?: () -> bool
+    # def created_at?: () -> bool
 
     def created_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -128,7 +128,7 @@ class ::Article < ::ApplicationRecord
 
     # def title=: (::String?) -> ::String?
 
-    def title?: () -> bool
+    # def title?: () -> bool
 
     def title_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
@@ -168,7 +168,7 @@ class ::Article < ::ApplicationRecord
 
     # def updated_at=: (::ActiveSupport::TimeWithZone) -> ::ActiveSupport::TimeWithZone
 
-    def updated_at?: () -> bool
+    # def updated_at?: () -> bool
 
     def updated_at_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
@@ -208,7 +208,7 @@ class ::Article < ::ApplicationRecord
 
     # def user_id=: (::Integer?) -> ::Integer?
 
-    def user_id?: () -> bool
+    # def user_id?: () -> bool
 
     def user_id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
