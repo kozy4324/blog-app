@@ -72,6 +72,7 @@ end
 
 
 gem "reactionview", "~> 0.2.0"
+gem "herb", "0.8.10"
 
 gem "tailwindcss-rails", "~> 4.3"
 
