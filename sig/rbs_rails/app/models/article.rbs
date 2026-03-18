@@ -64,17 +64,17 @@ class ::Article < ::ApplicationRecord
 
     def body_previously_was: () -> ::String?
 
-    def body_before_last_save: () -> ::String?
+    # def body_before_last_save: () -> ::String?
 
-    def body_change_to_be_saved: () -> ::Array[::String?]?
+    # def body_change_to_be_saved: () -> ::Array[::String?]?
 
-    def body_in_database: () -> ::String?
+    # def body_in_database: () -> ::String?
 
-    def saved_change_to_body: () -> ::Array[::String?]?
+    # def saved_change_to_body: () -> ::Array[::String?]?
 
-    def saved_change_to_body?: () -> bool
+    # def saved_change_to_body?: () -> bool
 
-    def will_save_change_to_body?: () -> bool
+    # def will_save_change_to_body?: () -> bool
 
     def restore_body!: () -> void
 
@@ -104,17 +104,17 @@ class ::Article < ::ApplicationRecord
 
     def created_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+    # def created_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    # def created_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
-    def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+    # def created_at_in_database: () -> ::ActiveSupport::TimeWithZone?
 
-    def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    # def saved_change_to_created_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
-    def saved_change_to_created_at?: () -> bool
+    # def saved_change_to_created_at?: () -> bool
 
-    def will_save_change_to_created_at?: () -> bool
+    # def will_save_change_to_created_at?: () -> bool
 
     def restore_created_at!: () -> void
 
@@ -144,17 +144,17 @@ class ::Article < ::ApplicationRecord
 
     def title_previously_was: () -> ::String?
 
-    def title_before_last_save: () -> ::String?
+    # def title_before_last_save: () -> ::String?
 
-    def title_change_to_be_saved: () -> ::Array[::String?]?
+    # def title_change_to_be_saved: () -> ::Array[::String?]?
 
-    def title_in_database: () -> ::String?
+    # def title_in_database: () -> ::String?
 
-    def saved_change_to_title: () -> ::Array[::String?]?
+    # def saved_change_to_title: () -> ::Array[::String?]?
 
-    def saved_change_to_title?: () -> bool
+    # def saved_change_to_title?: () -> bool
 
-    def will_save_change_to_title?: () -> bool
+    # def will_save_change_to_title?: () -> bool
 
     def restore_title!: () -> void
 
@@ -184,17 +184,17 @@ class ::Article < ::ApplicationRecord
 
     def updated_at_previously_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
+    # def updated_at_before_last_save: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    # def updated_at_change_to_be_saved: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
-    def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
+    # def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone?
 
-    def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
+    # def saved_change_to_updated_at: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
-    def saved_change_to_updated_at?: () -> bool
+    # def saved_change_to_updated_at?: () -> bool
 
-    def will_save_change_to_updated_at?: () -> bool
+    # def will_save_change_to_updated_at?: () -> bool
 
     def restore_updated_at!: () -> void
 
@@ -224,17 +224,17 @@ class ::Article < ::ApplicationRecord
 
     def user_id_previously_was: () -> ::Integer?
 
-    def user_id_before_last_save: () -> ::Integer?
+    # def user_id_before_last_save: () -> ::Integer?
 
-    def user_id_change_to_be_saved: () -> ::Array[::Integer?]?
+    # def user_id_change_to_be_saved: () -> ::Array[::Integer?]?
 
-    def user_id_in_database: () -> ::Integer?
+    # def user_id_in_database: () -> ::Integer?
 
-    def saved_change_to_user_id: () -> ::Array[::Integer?]?
+    # def saved_change_to_user_id: () -> ::Array[::Integer?]?
 
-    def saved_change_to_user_id?: () -> bool
+    # def saved_change_to_user_id?: () -> bool
 
-    def will_save_change_to_user_id?: () -> bool
+    # def will_save_change_to_user_id?: () -> bool
 
     def restore_user_id!: () -> void
 
