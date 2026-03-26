@@ -46,15 +46,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cbinary_before_type_cast: () -> untyped
 
     # ```ruby
@@ -226,15 +229,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cboolean_before_type_cast: () -> untyped
 
     # ```ruby
@@ -406,15 +412,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cdate_before_type_cast: () -> untyped
 
     # ```ruby
@@ -586,15 +595,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cdatetime_before_type_cast: () -> untyped
 
     # ```ruby
@@ -766,15 +778,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cdecimal_before_type_cast: () -> untyped
 
     # ```ruby
@@ -946,15 +961,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cfloat_before_type_cast: () -> untyped
 
     # ```ruby
@@ -1126,15 +1144,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cinteger_before_type_cast: () -> untyped
 
     # ```ruby
@@ -1306,15 +1327,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cjson_before_type_cast: () -> untyped
 
     # ```ruby
@@ -1486,15 +1510,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -1666,15 +1693,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cstring_before_type_cast: () -> untyped
 
     # ```ruby
@@ -1846,15 +1876,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def ctext_before_type_cast: () -> untyped
 
     # ```ruby
@@ -2026,15 +2059,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def ctime_before_type_cast: () -> untyped
 
     # ```ruby
@@ -2206,15 +2242,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def ctimestamp_before_type_cast: () -> untyped
 
     # ```ruby
@@ -2386,15 +2425,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cvirtual_int_before_type_cast: () -> untyped
 
     # ```ruby
@@ -2566,15 +2608,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def cvirtual_str_before_type_cast: () -> untyped
 
     # ```ruby
@@ -2746,15 +2791,18 @@ class Allcolumn
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def updated_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -2944,15 +2992,18 @@ class Article
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def body_before_type_cast: () -> untyped
 
     # ```ruby
@@ -3124,15 +3175,18 @@ class Article
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -3304,15 +3358,18 @@ class Article
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def title_before_type_cast: () -> untyped
 
     # ```ruby
@@ -3484,15 +3541,18 @@ class Article
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def updated_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -3664,15 +3724,18 @@ class Article
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def user_id_before_type_cast: () -> untyped
 
     # ```ruby
@@ -3862,15 +3925,18 @@ class Session
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -4042,15 +4108,18 @@ class Session
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def ip_address_before_type_cast: () -> untyped
 
     # ```ruby
@@ -4222,15 +4291,18 @@ class Session
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def updated_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -4402,15 +4474,18 @@ class Session
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def user_agent_before_type_cast: () -> untyped
 
     # ```ruby
@@ -4582,15 +4657,18 @@ class Session
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def user_id_before_type_cast: () -> untyped
 
     # ```ruby
@@ -4779,15 +4857,18 @@ class User
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def created_at_before_type_cast: () -> untyped
 
     # ```ruby
@@ -4959,15 +5040,18 @@ class User
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def email_address_before_type_cast: () -> untyped
 
     # ```ruby
@@ -5139,15 +5223,18 @@ class User
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def password_digest_before_type_cast: () -> untyped
 
     # ```ruby
@@ -5319,15 +5406,18 @@ class User
     # Returns the value of the attribute identified by +attr_name+ before
     # typecasting and deserialization.
     #
-    #   class Task < ActiveRecord::Base
-    #   end
+    # ```ruby
+    # class Task < ActiveRecord::Base
+    # end
     #
-    #   task = Task.new(id: '1', completed_on: '2012-10-21')
-    #   task.read_attribute('id')                            # => 1
-    #   task.read_attribute_before_type_cast('id')           # => '1'
-    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # task = Task.new(id: '1', completed_on: '2012-10-21')
+    # task.read_attribute('id')                            # => 1
+    # task.read_attribute_before_type_cast('id')           # => '1'
+    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    # ```
+    #
     def updated_at_before_type_cast: () -> untyped
 
     # ```ruby
