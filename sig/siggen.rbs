@@ -47,15 +47,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cbinary_before_type_cast: () -> untyped
@@ -114,6 +114,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cbinary?: () -> bool
+
+    # ```ruby
+    # t.binary "cbinary"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cbinary_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.binary "cbinary"
@@ -230,15 +367,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cboolean_before_type_cast: () -> untyped
@@ -297,6 +434,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cboolean?: () -> bool
+
+    # ```ruby
+    # t.boolean "cboolean"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cboolean_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.boolean "cboolean"
@@ -413,15 +687,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cdate_before_type_cast: () -> untyped
@@ -480,6 +754,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cdate?: () -> bool
+
+    # ```ruby
+    # t.date "cdate"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cdate_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.date "cdate"
@@ -596,15 +1007,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cdatetime_before_type_cast: () -> untyped
@@ -663,6 +1074,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cdatetime?: () -> bool
+
+    # ```ruby
+    # t.datetime "cdatetime"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cdatetime_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "cdatetime"
@@ -779,15 +1327,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cdecimal_before_type_cast: () -> untyped
@@ -846,6 +1394,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cdecimal?: () -> bool
+
+    # ```ruby
+    # t.decimal "cdecimal"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cdecimal_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.decimal "cdecimal"
@@ -962,15 +1647,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cfloat_before_type_cast: () -> untyped
@@ -1029,6 +1714,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cfloat?: () -> bool
+
+    # ```ruby
+    # t.float "cfloat"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cfloat_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.float "cfloat"
@@ -1145,15 +1967,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cinteger_before_type_cast: () -> untyped
@@ -1212,6 +2034,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cinteger?: () -> bool
+
+    # ```ruby
+    # t.integer "cinteger"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cinteger_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.integer "cinteger"
@@ -1328,15 +2287,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cjson_before_type_cast: () -> untyped
@@ -1395,6 +2354,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cjson?: () -> bool
+
+    # ```ruby
+    # t.json "cjson"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cjson_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.json "cjson"
@@ -1511,15 +2607,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def created_at_before_type_cast: () -> untyped
@@ -1578,6 +2674,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def created_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def created_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "created_at", null: false
@@ -1694,15 +2927,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cstring_before_type_cast: () -> untyped
@@ -1761,6 +2994,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cstring?: () -> bool
+
+    # ```ruby
+    # t.string "cstring"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cstring_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.string "cstring"
@@ -1877,15 +3247,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def ctext_before_type_cast: () -> untyped
@@ -1944,6 +3314,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def ctext?: () -> bool
+
+    # ```ruby
+    # t.text "ctext"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def ctext_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.text "ctext"
@@ -2060,15 +3567,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def ctime_before_type_cast: () -> untyped
@@ -2127,6 +3634,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def ctime?: () -> bool
+
+    # ```ruby
+    # t.time "ctime"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def ctime_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.time "ctime"
@@ -2243,15 +3887,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def ctimestamp_before_type_cast: () -> untyped
@@ -2310,6 +3954,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def ctimestamp?: () -> bool
+
+    # ```ruby
+    # t.timestamp "ctimestamp"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def ctimestamp_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.timestamp "ctimestamp"
@@ -2426,15 +4207,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cvirtual_int_before_type_cast: () -> untyped
@@ -2493,6 +4274,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cvirtual_int?: () -> bool
+
+    # ```ruby
+    # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cvirtual_int_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.virtual "cvirtual_int", type: :integer, as: "length(cstring)", stored: true
@@ -2609,15 +4527,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def cvirtual_str_before_type_cast: () -> untyped
@@ -2676,6 +4594,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def cvirtual_str?: () -> bool
+
+    # ```ruby
+    # t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def cvirtual_str_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.virtual "cvirtual_str", type: :string, as: "cstring || ctext", stored: true
@@ -2792,15 +4847,15 @@ class Allcolumn
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def updated_at_before_type_cast: () -> untyped
@@ -2859,6 +4914,143 @@ class Allcolumn
     # product.name? # => true
     # ```
     def updated_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def updated_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "updated_at", null: false
@@ -2993,15 +5185,15 @@ class Article
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def body_before_type_cast: () -> untyped
@@ -3060,6 +5252,143 @@ class Article
     # product.name? # => true
     # ```
     def body?: () -> bool
+
+    # ```ruby
+    # t.text "body"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def body_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.text "body"
@@ -3176,15 +5505,15 @@ class Article
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def created_at_before_type_cast: () -> untyped
@@ -3243,6 +5572,143 @@ class Article
     # product.name? # => true
     # ```
     def created_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def created_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "created_at", null: false
@@ -3359,15 +5825,15 @@ class Article
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def title_before_type_cast: () -> untyped
@@ -3426,6 +5892,143 @@ class Article
     # product.name? # => true
     # ```
     def title?: () -> bool
+
+    # ```ruby
+    # t.string "title"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def title_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.string "title"
@@ -3542,15 +6145,15 @@ class Article
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def updated_at_before_type_cast: () -> untyped
@@ -3609,6 +6212,143 @@ class Article
     # product.name? # => true
     # ```
     def updated_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def updated_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "updated_at", null: false
@@ -3725,15 +6465,15 @@ class Article
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def user_id_before_type_cast: () -> untyped
@@ -3792,6 +6532,143 @@ class Article
     # product.name? # => true
     # ```
     def user_id?: () -> bool
+
+    # ```ruby
+    # t.integer "user_id"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def user_id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.integer "user_id"
@@ -3926,15 +6803,15 @@ class Session
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def created_at_before_type_cast: () -> untyped
@@ -3993,6 +6870,143 @@ class Session
     # product.name? # => true
     # ```
     def created_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def created_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "created_at", null: false
@@ -4109,15 +7123,15 @@ class Session
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def ip_address_before_type_cast: () -> untyped
@@ -4176,6 +7190,143 @@ class Session
     # product.name? # => true
     # ```
     def ip_address?: () -> bool
+
+    # ```ruby
+    # t.string "ip_address"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def ip_address_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.string "ip_address"
@@ -4292,15 +7443,15 @@ class Session
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def updated_at_before_type_cast: () -> untyped
@@ -4359,6 +7510,143 @@ class Session
     # product.name? # => true
     # ```
     def updated_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def updated_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "updated_at", null: false
@@ -4475,15 +7763,15 @@ class Session
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def user_agent_before_type_cast: () -> untyped
@@ -4542,6 +7830,143 @@ class Session
     # product.name? # => true
     # ```
     def user_agent?: () -> bool
+
+    # ```ruby
+    # t.string "user_agent"
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def user_agent_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.string "user_agent"
@@ -4658,15 +8083,15 @@ class Session
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def user_id_before_type_cast: () -> untyped
@@ -4725,6 +8150,143 @@ class Session
     # product.name? # => true
     # ```
     def user_id?: () -> bool
+
+    # ```ruby
+    # t.integer "user_id", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def user_id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.integer "user_id", null: false
@@ -4858,15 +8420,15 @@ class User
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def created_at_before_type_cast: () -> untyped
@@ -4925,6 +8487,143 @@ class User
     # product.name? # => true
     # ```
     def created_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "created_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def created_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "created_at", null: false
@@ -5041,15 +8740,15 @@ class User
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def email_address_before_type_cast: () -> untyped
@@ -5108,6 +8807,143 @@ class User
     # product.name? # => true
     # ```
     def email_address?: () -> bool
+
+    # ```ruby
+    # t.string "email_address", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def email_address_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.string "email_address", null: false
@@ -5224,15 +9060,15 @@ class User
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def password_digest_before_type_cast: () -> untyped
@@ -5291,6 +9127,143 @@ class User
     # product.name? # => true
     # ```
     def password_digest?: () -> bool
+
+    # ```ruby
+    # t.string "password_digest", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def password_digest_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.string "password_digest", null: false
@@ -5407,15 +9380,15 @@ class User
     # typecasting and deserialization.
     #
     # ```ruby
-    # class Task < ActiveRecord::Base
-    # end
+    #   class Task < ActiveRecord::Base
+    #   end
     #
-    # task = Task.new(id: '1', completed_on: '2012-10-21')
-    # task.read_attribute('id')                            # => 1
-    # task.read_attribute_before_type_cast('id')           # => '1'
-    # task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
-    # task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
-    # task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
+    #   task = Task.new(id: '1', completed_on: '2012-10-21')
+    #   task.read_attribute('id')                            # => 1
+    #   task.read_attribute_before_type_cast('id')           # => '1'
+    #   task.read_attribute('completed_on')                  # => Sun, 21 Oct 2012
+    #   task.read_attribute_before_type_cast('completed_on') # => "2012-10-21"
+    #   task.read_attribute_before_type_cast(:completed_on)  # => "2012-10-21"
     # ```
     #
     def updated_at_before_type_cast: () -> untyped
@@ -5474,6 +9447,143 @@ class User
     # product.name? # => true
     # ```
     def updated_at?: () -> bool
+
+    # ```ruby
+    # t.datetime "updated_at", null: false
+    # ```
+    # == Active \Model \Dirty
+    #
+    # Provides a way to track changes in your object in the same way as
+    # Active Record does.
+    #
+    # The requirements for implementing ActiveModel::Dirty are:
+    #
+    # * <tt>include ActiveModel::Dirty</tt> in your object.
+    # * Call <tt>define_attribute_methods</tt> passing each method you want to
+    #   track.
+    # * Call <tt>[attr_name]_will_change!</tt> before each change to the tracked
+    #   attribute.
+    # * Call <tt>changes_applied</tt> after the changes are persisted.
+    # * Call <tt>clear_changes_information</tt> when you want to reset the changes
+    #   information.
+    # * Call <tt>restore_attributes</tt> when you want to restore previous data.
+    #
+    # A minimal implementation could be:
+    #
+    # ```ruby
+    #   class Person
+    #     include ActiveModel::Dirty
+    #
+    #     define_attribute_methods :name
+    #
+    #     def initialize
+    #       @name = nil
+    #     end
+    #
+    #     def name
+    #       @name
+    #     end
+    #
+    #     def name=(val)
+    #       name_will_change! unless val == @name
+    #       @name = val
+    #     end
+    #
+    #     def save
+    #       # do persistence work
+    #
+    #       changes_applied
+    #     end
+    #
+    #     def reload!
+    #       # get the values from the persistence layer
+    #
+    #       clear_changes_information
+    #     end
+    #
+    #     def rollback!
+    #       restore_attributes
+    #     end
+    #   end
+    # ```
+    #
+    # A newly instantiated +Person+ object is unchanged:
+    #
+    # ```ruby
+    #   person = Person.new
+    #   person.changed? # => false
+    # ```
+    #
+    # Change the name:
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed?       # => true
+    #   person.name_changed?  # => true
+    #   person.name_changed?(from: nil, to: "Bob") # => true
+    #   person.name_was       # => nil
+    #   person.name_change    # => [nil, "Bob"]
+    #   person.name = 'Bill'
+    #   person.name_change    # => [nil, "Bill"]
+    # ```
+    #
+    # Save the changes:
+    #
+    # ```ruby
+    #   person.save
+    #   person.changed?      # => false
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Reset the changes:
+    #
+    # ```ruby
+    #   person.previous_changes         # => {"name" => [nil, "Bill"]}
+    #   person.name_previously_changed? # => true
+    #   person.name_previous_change     # => [nil, "Bill"]
+    #   person.reload!
+    #   person.previous_changes         # => {}
+    # ```
+    #
+    # Rollback the changes:
+    #
+    # ```ruby
+    #   person.name = "Uncle Bob"
+    #   person.rollback!
+    #   person.name          # => "Bill"
+    #   person.name_changed? # => false
+    # ```
+    #
+    # Assigning the same value leaves the attribute unchanged:
+    #
+    # ```ruby
+    #   person.name = 'Bill'
+    #   person.name_changed? # => false
+    #   person.name_change   # => nil
+    # ```
+    #
+    # Which attributes have changed?
+    #
+    # ```ruby
+    #   person.name = 'Bob'
+    #   person.changed # => ["name"]
+    #   person.changes # => {"name" => ["Bill", "Bob"]}
+    # ```
+    #
+    # If an attribute is modified in-place then make use of
+    # <tt>[attribute_name]_will_change!</tt> to mark that the attribute is changing.
+    # Otherwise \Active \Model can't track changes to in-place attributes. Note
+    # that Active Record can detect in-place modifications automatically. You do
+    # not need to call <tt>[attribute_name]_will_change!</tt> on Active Record models.
+    #
+    # ```ruby
+    #   person.name_will_change!
+    #   person.name_change # => ["Bill", "Bill"]
+    #   person.name << 'y'
+    #   person.name_change # => ["Bill", "Billy"]
+    # ```
+    #
+    def updated_at_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     # ```ruby
     # t.datetime "updated_at", null: false

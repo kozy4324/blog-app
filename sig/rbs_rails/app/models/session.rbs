@@ -58,7 +58,7 @@ class ::Session < ::ApplicationRecord
 
     def created_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    # def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -98,7 +98,7 @@ class ::Session < ::ApplicationRecord
 
     def ip_address_was: () -> ::String?
 
-    def ip_address_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+    # def ip_address_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def ip_address_previous_change: () -> ::Array[::String?]?
 
@@ -138,7 +138,7 @@ class ::Session < ::ApplicationRecord
 
     def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    # def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -178,7 +178,7 @@ class ::Session < ::ApplicationRecord
 
     def user_agent_was: () -> ::String?
 
-    def user_agent_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+    # def user_agent_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def user_agent_previous_change: () -> ::Array[::String?]?
 
@@ -218,7 +218,7 @@ class ::Session < ::ApplicationRecord
 
     def user_id_was: () -> ::Integer?
 
-    def user_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+    # def user_id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def user_id_previous_change: () -> ::Array[::Integer?]?
 

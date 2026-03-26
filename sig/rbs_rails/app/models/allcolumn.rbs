@@ -58,7 +58,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cbinary_was: () -> ::String?
 
-    def cbinary_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+    # def cbinary_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def cbinary_previous_change: () -> ::Array[::String?]?
 
@@ -98,7 +98,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cboolean_was: () -> bool?
 
-    def cboolean_previously_changed?: (?from: bool?, ?to: bool?) -> bool
+    # def cboolean_previously_changed?: (?from: bool?, ?to: bool?) -> bool
 
     def cboolean_previous_change: () -> ::Array[bool?]?
 
@@ -138,7 +138,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cdate_was: () -> ::Date?
 
-    def cdate_previously_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
+    # def cdate_previously_changed?: (?from: ::Date?, ?to: ::Date?) -> bool
 
     def cdate_previous_change: () -> ::Array[::Date?]?
 
@@ -178,7 +178,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cdatetime_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def cdatetime_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    # def cdatetime_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def cdatetime_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -218,7 +218,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cdecimal_was: () -> ::BigDecimal?
 
-    def cdecimal_previously_changed?: (?from: ::BigDecimal?, ?to: ::BigDecimal?) -> bool
+    # def cdecimal_previously_changed?: (?from: ::BigDecimal?, ?to: ::BigDecimal?) -> bool
 
     def cdecimal_previous_change: () -> ::Array[::BigDecimal?]?
 
@@ -258,7 +258,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cfloat_was: () -> ::Float?
 
-    def cfloat_previously_changed?: (?from: ::Float?, ?to: ::Float?) -> bool
+    # def cfloat_previously_changed?: (?from: ::Float?, ?to: ::Float?) -> bool
 
     def cfloat_previous_change: () -> ::Array[::Float?]?
 
@@ -298,7 +298,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cinteger_was: () -> ::Integer?
 
-    def cinteger_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+    # def cinteger_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def cinteger_previous_change: () -> ::Array[::Integer?]?
 
@@ -338,7 +338,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cjson_was: () -> untyped
 
-    def cjson_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+    # def cjson_previously_changed?: (?from: untyped, ?to: untyped) -> bool
 
     def cjson_previous_change: () -> ::Array[untyped]?
 
@@ -378,7 +378,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def created_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    # def created_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def created_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -418,7 +418,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cstring_was: () -> ::String?
 
-    def cstring_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+    # def cstring_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def cstring_previous_change: () -> ::Array[::String?]?
 
@@ -458,7 +458,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctext_was: () -> ::String?
 
-    def ctext_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+    # def ctext_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def ctext_previous_change: () -> ::Array[::String?]?
 
@@ -498,7 +498,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctime_was: () -> ::Time?
 
-    def ctime_previously_changed?: (?from: ::Time?, ?to: ::Time?) -> bool
+    # def ctime_previously_changed?: (?from: ::Time?, ?to: ::Time?) -> bool
 
     def ctime_previous_change: () -> ::Array[::Time?]?
 
@@ -538,7 +538,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def ctimestamp_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def ctimestamp_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    # def ctimestamp_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def ctimestamp_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
@@ -578,7 +578,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cvirtual_int_was: () -> ::Integer?
 
-    def cvirtual_int_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
+    # def cvirtual_int_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
 
     def cvirtual_int_previous_change: () -> ::Array[::Integer?]?
 
@@ -618,7 +618,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def cvirtual_str_was: () -> ::String?
 
-    def cvirtual_str_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
+    # def cvirtual_str_previously_changed?: (?from: ::String?, ?to: ::String?) -> bool
 
     def cvirtual_str_previous_change: () -> ::Array[::String?]?
 
@@ -658,7 +658,7 @@ class ::Allcolumn < ::ApplicationRecord
 
     def updated_at_was: () -> ::ActiveSupport::TimeWithZone?
 
-    def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
+    # def updated_at_previously_changed?: (?from: ::ActiveSupport::TimeWithZone?, ?to: ::ActiveSupport::TimeWithZone?) -> bool
 
     def updated_at_previous_change: () -> ::Array[::ActiveSupport::TimeWithZone?]?
 
