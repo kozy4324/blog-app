@@ -3,48 +3,6 @@
 class ::Article < ::ApplicationRecord
   extend ::ActiveRecord::Base::ClassMethods[::Article, ::Article::ActiveRecord_Relation, ::Integer]
 
-  module ::Article::GeneratedAttributeMethods
-    def id: () -> ::Integer
-
-    def id=: (::Integer) -> ::Integer
-
-    def id?: () -> bool
-
-    def id_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
-
-    def id_change: () -> [ ::Integer?, ::Integer? ]
-
-    def id_will_change!: () -> void
-
-    def id_was: () -> ::Integer?
-
-    def id_previously_changed?: (?from: ::Integer?, ?to: ::Integer?) -> bool
-
-    def id_previous_change: () -> ::Array[::Integer?]?
-
-    def id_previously_was: () -> ::Integer?
-
-    def id_before_last_save: () -> ::Integer?
-
-    def id_change_to_be_saved: () -> ::Array[::Integer?]?
-
-    def id_in_database: () -> ::Integer?
-
-    def saved_change_to_id: () -> ::Array[::Integer?]?
-
-    def saved_change_to_id?: () -> bool
-
-    def will_save_change_to_id?: () -> bool
-
-    def restore_id!: () -> void
-
-    def clear_id_change: () -> void
-
-    def id_before_type_cast: () -> ::Integer
-
-    def id_for_database: () -> ::Integer
-  end
-  include ::Article::GeneratedAttributeMethods
   module ::Article::GeneratedAliasAttributeMethods
     include ::Article::GeneratedAttributeMethods
 

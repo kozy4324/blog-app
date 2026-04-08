@@ -21,9 +21,49 @@
 # end
 # ```
 class Allcolumn
-  include GeneratedAttributeMethods
-
   module GeneratedAttributeMethods
+    def id: () -> Integer?
+
+    def id=: (Integer? value) -> void
+
+    def id_before_type_cast: () -> untyped
+
+    def id_for_database: () -> untyped
+
+    def id_came_from_user?: () -> bool
+
+    def id?: () -> bool
+
+    def id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change: () -> [ Integer?, Integer? ]?
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> Integer?
+
+    def id_previous_change: () -> [ Integer?, Integer? ]?
+
+    def id_previously_was: () -> Integer?
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def saved_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def saved_change_to_id: () -> [ Integer?, Integer? ]?
+
+    def id_before_last_save: () -> Integer?
+
+    def will_save_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change_to_be_saved: () -> [ Integer?, Integer? ]?
+
+    def id_in_database: () -> Integer?
+
     # ```ruby
     # t.binary "cbinary"
     # ```
@@ -22680,6 +22720,7 @@ class Allcolumn
     # original value and the new value about to be saved.
     def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone
   end
+  include GeneratedAttributeMethods
 end
 
 # In schema.rb, this model is declared as:
@@ -22695,9 +22736,49 @@ end
 # end
 # ```
 class Article
-  include GeneratedAttributeMethods
-
   module GeneratedAttributeMethods
+    def id: () -> Integer?
+
+    def id=: (Integer? value) -> void
+
+    def id_before_type_cast: () -> untyped
+
+    def id_for_database: () -> untyped
+
+    def id_came_from_user?: () -> bool
+
+    def id?: () -> bool
+
+    def id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change: () -> [ Integer?, Integer? ]?
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> Integer?
+
+    def id_previous_change: () -> [ Integer?, Integer? ]?
+
+    def id_previously_was: () -> Integer?
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def saved_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def saved_change_to_id: () -> [ Integer?, Integer? ]?
+
+    def id_before_last_save: () -> Integer?
+
+    def will_save_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change_to_be_saved: () -> [ Integer?, Integer? ]?
+
+    def id_in_database: () -> Integer?
+
     # ```ruby
     # t.text "body"
     # ```
@@ -29778,6 +29859,7 @@ class Article
     # original value and the new value about to be saved.
     def user_id_in_database: () -> ::Integer?
   end
+  include GeneratedAttributeMethods
 end
 
 # In schema.rb, this model is declared as:
@@ -29793,9 +29875,49 @@ end
 # end
 # ```
 class Session
-  include GeneratedAttributeMethods
-
   module GeneratedAttributeMethods
+    def id: () -> Integer?
+
+    def id=: (Integer? value) -> void
+
+    def id_before_type_cast: () -> untyped
+
+    def id_for_database: () -> untyped
+
+    def id_came_from_user?: () -> bool
+
+    def id?: () -> bool
+
+    def id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change: () -> [ Integer?, Integer? ]?
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> Integer?
+
+    def id_previous_change: () -> [ Integer?, Integer? ]?
+
+    def id_previously_was: () -> Integer?
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def saved_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def saved_change_to_id: () -> [ Integer?, Integer? ]?
+
+    def id_before_last_save: () -> Integer?
+
+    def will_save_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change_to_be_saved: () -> [ Integer?, Integer? ]?
+
+    def id_in_database: () -> Integer?
+
     # ```ruby
     # t.datetime "created_at", null: false
     # ```
@@ -36876,6 +36998,7 @@ class Session
     # original value and the new value about to be saved.
     def user_id_in_database: () -> ::Integer
   end
+  include GeneratedAttributeMethods
 end
 
 # In schema.rb, this model is declared as:
@@ -36890,9 +37013,49 @@ end
 # end
 # ```
 class User
-  include GeneratedAttributeMethods
-
   module GeneratedAttributeMethods
+    def id: () -> Integer?
+
+    def id=: (Integer? value) -> void
+
+    def id_before_type_cast: () -> untyped
+
+    def id_for_database: () -> untyped
+
+    def id_came_from_user?: () -> bool
+
+    def id?: () -> bool
+
+    def id_previously_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_changed?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change: () -> [ Integer?, Integer? ]?
+
+    def id_will_change!: () -> void
+
+    def id_was: () -> Integer?
+
+    def id_previous_change: () -> [ Integer?, Integer? ]?
+
+    def id_previously_was: () -> Integer?
+
+    def restore_id!: () -> void
+
+    def clear_id_change: () -> void
+
+    def saved_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def saved_change_to_id: () -> [ Integer?, Integer? ]?
+
+    def id_before_last_save: () -> Integer?
+
+    def will_save_change_to_id?: (?from: untyped, ?to: untyped) -> bool
+
+    def id_change_to_be_saved: () -> [ Integer?, Integer? ]?
+
+    def id_in_database: () -> Integer?
+
     # ```ruby
     # t.datetime "created_at", null: false
     # ```
@@ -42557,4 +42720,5 @@ class User
     # original value and the new value about to be saved.
     def updated_at_in_database: () -> ::ActiveSupport::TimeWithZone
   end
+  include GeneratedAttributeMethods
 end
