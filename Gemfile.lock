@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/pocke/rbs_rails.git
-  revision: f6882de86b680d45ff87eef7b57ecda781d5a397
+  revision: 6c9f1a2bed860ab8985f356ce2741bce68e9839f
   branch: master
   specs:
     rbs_rails (0.13.1)
@@ -96,7 +96,7 @@ GEM
     bcrypt_pbkdf (1.1.2)
     bigdecimal (4.1.2)
     bindex (0.8.1)
-    bootsnap (1.24.3)
+    bootsnap (1.24.4)
       msgpack (~> 1.2)
     brakeman (8.0.4)
       racc
@@ -120,8 +120,8 @@ GEM
       reline (>= 0.3.8)
     dotenv (3.2.0)
     drb (2.2.3)
-    dry-configurable (1.3.0)
-      dry-core (~> 1.1)
+    dry-configurable (1.4.0)
+      dry-core (~> 1.0)
       zeitwerk (~> 2.6)
     dry-core (1.2.0)
       concurrent-ruby (~> 1.0)
@@ -193,7 +193,7 @@ GEM
       prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.14.1)
+    jbuilder (2.15.0)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.19.5)
@@ -224,7 +224,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.2.1)
     matrix (0.4.3)
     mime-types (3.7.0)
       logger
@@ -351,7 +351,7 @@ GEM
     reline (0.6.3)
       io-console (~> 0.5)
     rexml (3.4.4)
-    rubocop (1.86.1)
+    rubocop (1.86.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -373,7 +373,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.35.0)
+    rubocop-rails (2.35.2)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -393,7 +393,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (3.3.0)
     securerandom (0.4.1)
-    selenium-webdriver (4.43.0)
+    selenium-webdriver (4.44.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -452,19 +452,19 @@ GEM
     tailwindcss-rails (4.4.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
-    tailwindcss-ruby (4.2.4)
-    tailwindcss-ruby (4.2.4-aarch64-linux-gnu)
-    tailwindcss-ruby (4.2.4-aarch64-linux-musl)
-    tailwindcss-ruby (4.2.4-arm64-darwin)
-    tailwindcss-ruby (4.2.4-x86_64-linux-gnu)
-    tailwindcss-ruby (4.2.4-x86_64-linux-musl)
+    tailwindcss-ruby (4.3.0)
+    tailwindcss-ruby (4.3.0-aarch64-linux-gnu)
+    tailwindcss-ruby (4.3.0-aarch64-linux-musl)
+    tailwindcss-ruby (4.3.0-arm64-darwin)
+    tailwindcss-ruby (4.3.0-x86_64-linux-gnu)
+    tailwindcss-ruby (4.3.0-x86_64-linux-musl)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     thor (1.5.0)
-    thruster (0.1.20)
-    thruster (0.1.20-aarch64-linux)
-    thruster (0.1.20-arm64-darwin)
-    thruster (0.1.20-x86_64-linux)
+    thruster (0.1.21)
+    thruster (0.1.21-aarch64-linux)
+    thruster (0.1.21-arm64-darwin)
+    thruster (0.1.21-x86_64-linux)
     timeout (0.6.1)
     traceologist (0.2.0)
     tsort (0.2.0)
@@ -489,7 +489,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.5)
+    zeitwerk (2.8.1)
 
 PLATFORMS
   aarch64-linux
